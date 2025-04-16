@@ -1,0 +1,40 @@
+{
+    "countries": [
+      {
+        "id": 1,
+        "name": "Colombia",
+        "adventures": [
+          {
+            "id": 1,
+            "title": "CROSSING THE CENTRAL ANDES",
+            "location": "Salento, Colombia",
+            "type": "Hiking",
+            "price": 390,
+            "image": "https://www.embark.org/tours_images/7022/17430760810.JPG"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Tanzania",
+        "adventures": [
+          {
+            "id": 2,
+            "title": "3 DAYS TANZANIA BEST SAFARI LAKE MANYARA & NGORONGORO",
+            "location": "Arusha, Tanzania",
+            "type": "Best Tanzania Wildlife safari",
+            "price": 1100,
+            "image": "https://www.embark.org/tours_images/7023/17430799760.JPG"
+          },
+          {
+            "id": 3,
+            "title": "2 DAYS SAFARI – TARANGIRE NATIONAL PARK & NGORONGORO CRATER",
+            "location": "Moshi, Tanzania",
+            "type": "Wildlife safari best of Tanzania",
+            "price": 870,
+            "image": "https://www.embark.org/tours_images/7025/17432052634.jpeg"
+          }
+        ]
+      }
+    ]
+  }
