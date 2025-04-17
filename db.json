@@ -257,10 +257,7 @@
         "rating": 5.0,
         "tags": ["cultural", "walking tour", "history"]
       },
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/main
       {
         "id": 8,
         "locationId": 2,
@@ -275,7 +272,6 @@
         "summary": "Descend 100m cliffs on Table Mountain with panoramic views of Cape Town below you.",
         "rating": 4.9,
         "tags": ["rock climbing", "extreme", "views"]
-<<<<<<< HEAD
       },
       {
         "id": 9,
@@ -696,8 +692,6 @@
         "rating": 4.9,
         "reviewCount": 22,
         "tags": ["backpacking", "mountaineering", "wilderness"]
-=======
->>>>>>> origin/main
       }
     ],
     "hosts": [
