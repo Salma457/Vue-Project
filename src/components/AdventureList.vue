@@ -1,66 +1,113 @@
 <template>
     <div class="adventures-page">
-      <CountryFilter 
-        :countries="allCountries" 
-        @country-changed="filterByCountry"
-      />
-      
-      <div class="adventures-list">
+      <!-- شريط الفلاتر -->
+      <div class="filters">
+        <div class="filter-group">
+          <label>All Countries</label>
+          <select v-model="selectedCountry" @change="applyFilters">
+            <option value="">All Countries</option>
+            <option v-for="country in uniqueCountries" :key="country" :value="country">
+              {{ country }}
+            </option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label>All Types</label>
+          <select v-model="selectedType" @change="applyFilters">
+            <option value="">All Types</option>
+            <option v-for="type in uniqueTypes" :key="type" :value="type">
+              {{ type }}
+            </option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label>All Difficulty Levels</label>
+          <select v-model="selectedDifficulty" @change="applyFilters">
+            <option value="">All Difficulty Levels</option>
+            <option v-for="level in uniqueDifficulties" :key="level" :value="level">
+              {{ level }}
+            </option>
+          </select>
+        </div>
+      </div>
+  
+      <!-- عرض المغامرات -->
+      <div class="adventures-grid">
         <AdventureCard 
           v-for="adventure in filteredAdventures" 
           :key="adventure.id" 
           :adventure="adventure"
+          :location="getLocation(adventure.locationId)"
         />
       </div>
     </div>
   </template>
   
   <script>
-  import AdventureCard from './AdventureCard.vue'
-  import CountryFilter from './CountryFilter.vue'
   import axios from 'axios'
+  import AdventureCard from './AdventureCard.vue'
   
   export default {
     name: 'AdventureList',
     components: {
-      AdventureCard,
-      CountryFilter
+      AdventureCard
     },
     data() {
       return {
-        allCountries: [],
-        allAdventures: [],
-        selectedCountry: ''
+        locations: [],
+        adventures: [],
+        selectedCountry: '',
+        selectedType: '',
+        selectedDifficulty: ''
       }
     },
     async created() {
       try {
-        const response = await axios.get('http://localhost:5000/countries')
-        this.allCountries = response.data
-        
-        // تحويل الهيكل ليكون جميع المغامرات في مصفوفة واحدة
-        this.allAdventures = response.data.flatMap(country => 
-          country.adventures.map(adv => ({
-            ...adv,
-            country: country.name
-          }))
-        )
+        const [locationsRes, adventuresRes] = await Promise.all([
+          axios.get('http://localhost:5000/locations'),
+          axios.get('http://localhost:5000/adventures')
+        ])
+        this.locations = locationsRes.data
+        this.adventures = adventuresRes.data
       } catch (error) {
-        console.error('Error fetching data:', error)
+        console.error('Error loading data:', error)
       }
     },
     computed: {
+      uniqueCountries() {
+        return [...new Set(this.locations.map(loc => loc.country))]
+      },
+      uniqueTypes() {
+        const types = new Set()
+        this.adventures.forEach(adv => {
+          if (adv.tags) {
+            adv.tags.forEach(tag => types.add(tag))
+          }
+        })
+        return [...types]
+      },
+      uniqueDifficulties() {
+        return [...new Set(this.adventures.map(adv => adv.difficulty))]
+      },
       filteredAdventures() {
-        if (!this.selectedCountry) return this.allAdventures
-        
-        return this.allAdventures.filter(
-          adventure => adventure.country === this.selectedCountry
-        )
+        return this.adventures.filter(adv => {
+          const location = this.getLocation(adv.locationId)
+          return (
+            (!this.selectedCountry || location?.country === this.selectedCountry) &&
+            (!this.selectedType || (adv.tags && adv.tags.includes(this.selectedType))) &&
+            (!this.selectedDifficulty || adv.difficulty === this.selectedDifficulty)
+          )
+        })
       }
     },
     methods: {
-      filterByCountry(country) {
-        this.selectedCountry = country
+      getLocation(locationId) {
+        return this.locations.find(loc => loc.id === locationId)
+      },
+      applyFilters() {
+        // يتم تنفيذ الفلترة تلقائياً عبر computed property
       }
     }
   }
@@ -73,10 +120,38 @@
     margin: 0 auto;
   }
   
-  .adventures-list {
+  .filters {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f8f8f8;
+    border-radius: 8px;
+  }
+  
+  .filter-group {
+    flex: 1;
+    max-width: 250px;
+  }
+  
+  .filter-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  .filter-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: white;
+  }
+  
+  .adventures-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
+    gap: 25px;
   }
   </style>

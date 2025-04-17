@@ -1,14 +1,19 @@
 <template>
-    <nav class="navbar">
-      <div class="logo">EMBARK.ORG</div>
-      <div class="tagline">FEATURED TURKS</div>
-      <div class="nav-links">
-        <a href="#">Explore</a>
-        <a href="#">Search</a>
-        <a href="#">salma</a>
-        <button class="host-button">HOST AN ADVENTURE</button>
+    <header class="navbar">
+      <div class="logo-container">
+        <h1 class="logo">
+          <router-link to="/" class="logo-link">EMBARK.ORG</router-link>
+        </h1>
+        <p class="tagline">FEATURED TURKS</p>
       </div>
-    </nav>
+      
+      <nav class="nav-links">
+        <router-link to="/adventures" class="nav-link">Explore</router-link>
+        <router-link to="/register" class="nav-link">Register</router-link>
+        <router-link to="/login" class="nav-link">Login</router-link>
+        <button class="host-button">HOST AN ADVENTURE</button>
+      </nav>
+    </header>
   </template>
   
   <script>
@@ -27,27 +32,45 @@
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   }
   
+  .logo-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
   .logo {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+  
+  .logo-link {
     font-weight: bold;
-    font-size: 1.3rem;
     color: #333;
+    text-decoration: none;
   }
   
   .tagline {
+    font-size: 0.8rem;
     color: #666;
-    font-size: 0.9rem;
+    margin: 3px 0 0;
   }
   
   .nav-links {
     display: flex;
-    gap: 20px;
     align-items: center;
+    gap: 25px;
   }
   
-  .nav-links a {
+  .nav-link {
     text-decoration: none;
     color: #333;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  
+  .router-link-exact-active {
+    color: #ff5a5f;
+    font-weight: bold;
   }
   
   .host-button {
@@ -55,8 +78,14 @@
     background-color: #ff5a5f;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
+    font-weight: bold;
     cursor: pointer;
-    font-size: 0.9rem;
+    transition: all 0.3s;
+  }
+  
+  .host-button:hover {
+    background-color: #e04a50;
+    transform: translateY(-2px);
   }
   </style>
