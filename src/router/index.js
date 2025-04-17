@@ -12,6 +12,7 @@ import Login from '@/components/Login.vue'
 import LoginPage from '@/views/LoginPage.vue'
 import RegisterPage from '@/views/RegisterPage.vue'
 import UsersList from '@/components/UsersList.vue'
+import error404page from '@/views/error404page.vue'
 
 
 
@@ -77,6 +78,11 @@ const routes = [
     path: '/users',
     name: 'users',
     component: UsersList
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: '404',
+    component:  error404page
   }
   
 ]

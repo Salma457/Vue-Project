@@ -14,7 +14,7 @@
   <WhyChooseUs/>
   <section4 />
       <Section3/>
-      
+      <Error404/>
       <Footer/>
     </div>
   </template>
@@ -32,7 +32,6 @@ import Footer from '@/components/Footer.vue';
       Navbar,
       WhyChooseUs,
       section4,
-
       Section3,
       Footer
     }
