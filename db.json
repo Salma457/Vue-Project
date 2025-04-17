@@ -257,6 +257,7 @@
         "rating": 5.0,
         "tags": ["cultural", "walking tour", "history"]
       },
+
       {
         "id": 8,
         "locationId": 2,
@@ -271,6 +272,426 @@
         "summary": "Descend 100m cliffs on Table Mountain with panoramic views of Cape Town below you.",
         "rating": 4.9,
         "tags": ["rock climbing", "extreme", "views"]
+      },
+      {
+        "id": 9,
+        "locationId": 3,
+        "title": "ROCKY MOUNTAIN BIKE EXPEDITION",
+        "subtitle": "Mountain Biking - Denver, Colorado, United States",
+        "host": "Trail Masters Colorado",
+        "duration": "2 days",
+        "groupSize": "2-6 people",
+        "difficulty": "Intermediate",
+        "price": 395,
+        "image": "https://images.unsplash.com/photo-1541625602330-2277a4c46182",
+        "gallery": [
+          "https://images.unsplash.com/photo-1541625602330-2277a4c46182",
+          "https://images.unsplash.com/photo-1576435728678-68d0fbf94e91",
+          "https://images.unsplash.com/photo-1511994298241-608e28f14fde"
+        ],
+        "summary": "Experience world-class singletrack through aspen groves and alpine meadows with professional guides. Includes technical skills coaching and overnight backcountry camping.",
+        "highlights": [
+          "Ride famous Colorado Trail segments",
+          "Professional bike maintenance support",
+          "Backcountry gourmet meals",
+          "Wildlife spotting opportunities"
+        ],
+        "itinerary": [
+          {
+            "day": 1,
+            "title": "Buffalo Creek Trail System",
+            "description": "25 miles of flowing singletrack through pine forests with optional technical features"
+          },
+          {
+            "day": 2,
+            "title": "Kenosha Pass Epic Ride",
+            "description": "High altitude riding above 10,000ft with panoramic Continental Divide views"
+          }
+        ],
+        "included": [
+          "Full-suspension mountain bike rental",
+          "Protective gear",
+          "All meals and snacks",
+          "Backcountry camping equipment",
+          "Professional guides"
+        ],
+        "notIncluded": [
+          "Transportation to trailheads",
+          "Personal clothing/gear",
+          "Travel insurance"
+        ],
+        "availability": "June-September",
+        "ageRange": "16+ years",
+        "meetingPoint": "Denver Mountain Sports Shop",
+        "rating": 4.9,
+        "reviewCount": 18,
+        "tags": ["mountain biking", "camping", "wilderness"]
+      },
+      {
+        "id": 10,
+        "locationId": 4,
+        "title": "WILLAMETTE VALLEY WINE TOUR",
+        "subtitle": "Wine Tasting - Portland, Oregon, United States",
+        "host": "Vineyard Adventures",
+        "duration": "1 day",
+        "groupSize": "2-8 people",
+        "difficulty": "Easy",
+        "price": 185,
+        "discountPrice": 165,
+        "image": "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb",
+        "gallery": [
+          "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb",
+          "https://images.unsplash.com/photo-1414235077428-338989a2e8c0",
+          "https://images.unsplash.com/photo-1470337458703-46ad1756a187"
+        ],
+        "summary": "Visit 4 boutique wineries in Oregon's famous Willamette Valley, including exclusive tastings not available to the general public. Perfect for wine enthusiasts and casual drinkers alike.",
+        "highlights": [
+          "Pinot Noir focused tastings",
+          "Meet-the-winemaker experiences",
+          "Vineyard picnic lunch",
+          "Scenic valley views"
+        ],
+        "itinerary": [
+          {
+            "day": 1,
+            "title": "Willamette Valley Wine Tour",
+            "description": "Visit 4 distinct wineries with private tastings and educational sessions about Oregon winemaking"
+          }
+        ],
+        "included": [
+          "All tasting fees",
+          "Gourmet lunch",
+          "Comfortable transportation",
+          "Knowledgeable guide"
+        ],
+        "notIncluded": [
+          "Hotel pickup/dropoff",
+          "Purchased bottles of wine"
+        ],
+        "availability": "Year-round (seasonal variations)",
+        "ageRange": "21+ years",
+        "meetingPoint": "Downtown Portland Wine Center",
+        "rating": 4.8,
+        "reviewCount": 32,
+        "tags": ["wine", "culinary", "relaxation"]
+      },
+      {
+        "id": 11,
+        "locationId": 6,
+        "title": "OLYMPIC NATIONAL PARK BACKPACKING",
+        "subtitle": "Hiking - Seattle, Washington, United States",
+        "host": "Northwest Wilderness Guides",
+        "duration": "4 days",
+        "groupSize": "4-8 people",
+        "difficulty": "Intermediate",
+        "price": 675,
+        "image": "https://images.unsplash.com/photo-1500581276021-a4bbcd0050c5",
+        "gallery": [
+          "https://images.unsplash.com/photo-1500581276021-a4bbcd0050c5",
+          "https://images.unsplash.com/photo-1470114716159-e389f8712fda",
+          "https://images.unsplash.com/photo-1496080174650-637e3f22fa09"
+        ],
+        "summary": "Immerse yourself in the diverse ecosystems of Olympic National Park on this 4-day backpacking adventure. Experience rainforests, alpine meadows, and coastal wilderness with expert naturalist guides.",
+        "highlights": [
+          "Hoh Rainforest exploration",
+          "High divide trail with mountain views",
+          "Wildlife tracking",
+          "Backcountry camping under stars"
+        ],
+        "itinerary": [
+          {
+            "day": 1,
+            "title": "Hoh River Trail",
+            "description": "Begin hike through moss-draped old growth rainforest along the Hoh River"
+          },
+          {
+            "day": 2,
+            "title": "Alpine Ascent",
+            "description": "Climb to high meadows with views of Mount Olympus and Blue Glacier"
+          },
+          {
+            "day": 3,
+            "title": "Seven Lakes Basin",
+            "description": "Explore crystal clear alpine lakes and possible wildlife sightings"
+          },
+          {
+            "day": 4,
+            "title": "Return Through Rainforest",
+            "description": "Descend through different ecological zones back to trailhead"
+          }
+        ],
+        "included": [
+          "All camping equipment",
+          "Backcountry meals",
+          "Professional guides",
+          "Park permits",
+          "Transportation from Seattle"
+        ],
+        "notIncluded": [
+          "Personal gear",
+          "Pre/post trip accommodations",
+          "Gratuities"
+        ],
+        "availability": "July-September",
+        "ageRange": "16+ years",
+        "meetingPoint": "Seattle REI Store",
+        "rating": 4.9,
+        "reviewCount": 27,
+        "tags": ["backpacking", "wilderness", "national park"]
+      },
+      {
+        "id": 12,
+        "locationId": 2,
+        "title": "CAPE PENINSULA PRIVATE SAFARI",
+        "subtitle": "Wildlife - Cape Town, South Africa",
+        "host": "African Nature Tours",
+        "duration": "1 day",
+        "groupSize": "1-4 people",
+        "difficulty": "Easy",
+        "price": 320,
+        "image": "https://images.unsplash.com/photo-1516426122078-c23e76319801",
+        "gallery": [
+          "https://images.unsplash.com/photo-1516426122078-c23e76319801",
+          "https://images.unsplash.com/photo-1550358864-518f256c532a",
+          "https://images.unsplash.com/photo-1504173010664-32509aeebb62"
+        ],
+        "summary": "Exclusive private safari experience just outside Cape Town, spotting zebra, antelope, ostriches and more in their natural habitat with an expert wildlife tracker.",
+        "highlights": [
+          "Private game viewing vehicle",
+          "Cape Point nature reserve",
+          "Penguin colony visit",
+          "Traditional braai lunch"
+        ],
+        "itinerary": [
+          {
+            "day": 1,
+            "title": "Cape Peninsula Safari",
+            "description": "Morning game drive followed by coastal exploration including Boulders Beach penguins"
+          }
+        ],
+        "included": [
+          "Private guide",
+          "All park fees",
+          "Lunch and drinks",
+          "Hotel pickup/dropoff"
+        ],
+        "notIncluded": [
+          "Gratuities",
+          "Personal purchases"
+        ],
+        "availability": "Year-round",
+        "ageRange": "All ages",
+        "meetingPoint": "Hotel pickup in Cape Town",
+        "rating": 5.0,
+        "reviewCount": 41,
+        "tags": ["safari", "wildlife", "family friendly"]
+      },
+      {
+        "id": 13,
+        "locationId": 5,
+        "title": "DESERT TO SEA KAYAK EXPEDITION",
+        "subtitle": "Kayaking - San Diego, California, United States",
+        "host": "SoCal Paddle Adventures",
+        "duration": "2 days",
+        "groupSize": "2-6 people",
+        "difficulty": "Intermediate",
+        "price": 295,
+        "image": "https://images.unsplash.com/photo-1519312925718-5d0f9a5996c1",
+        "gallery": [
+          "https://images.unsplash.com/photo-1519312925718-5d0f9a5996c1",
+          "https://images.unsplash.com/photo-1519046904884-53103b34b206",
+          "https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6"
+        ],
+        "summary": "Unique two-day journey from the Anza-Borrego desert through canyons to the Pacific Ocean, camping overnight along the San Diego River. Experience diverse ecosystems few ever see.",
+        "highlights": [
+          "Desert canyon paddling",
+          "Riverside camping",
+          "Coastal lagoon exploration",
+          "Wildlife viewing"
+        ],
+        "itinerary": [
+          {
+            "day": 1,
+            "title": "Desert Paddle",
+            "description": "Begin in desert oasis, paddle through scenic canyons to riverside campsite"
+          },
+          {
+            "day": 2,
+            "title": "Ocean Arrival",
+            "description": "Continue downstream to coastal wetlands where river meets Pacific"
+          }
+        ],
+        "included": [
+          "All kayaking equipment",
+          "Camping gear",
+          "Meals and snacks",
+          "Dry bags",
+          "Guide services"
+        ],
+        "notIncluded": [
+          "Sleeping bag",
+          "Personal items",
+          "Transportation to start point"
+        ],
+        "availability": "March-November",
+        "ageRange": "14+ years",
+        "meetingPoint": "Borrego Springs Park",
+        "rating": 4.8,
+        "reviewCount": 15,
+        "tags": ["kayaking", "camping", "ecotourism"]
+      },
+      {
+        "id": 14,
+        "locationId": 1,
+        "title": "PAKLENI ISLANDS SAILING TRIP",
+        "subtitle": "Sailing - Split, Croatia",
+        "host": "Adriatic Sail Tours",
+        "duration": "1 day",
+        "groupSize": "2-8 people",
+        "difficulty": "Easy",
+        "price": 220,
+        "image": "https://images.unsplash.com/photo-1518544866330-95a5acf73f14",
+        "gallery": [
+          "https://images.unsplash.com/photo-1518544866330-95a5acf73f14",
+          "https://images.unsplash.com/photo-1508957175871-d5f67556a5ea",
+          "https://images.unsplash.com/photo-1504472478235-9bc48b8e1c01"
+        ],
+        "summary": "Sail the stunning Adriatic on a classic yacht, stopping at hidden coves and beaches of the Pakleni islands. Includes swimming, snorkeling, and authentic Dalmatian lunch.",
+        "highlights": [
+          "Sailing on traditional boat",
+          "Multiple swimming stops",
+          "Secluded beaches",
+          "Fresh seafood lunch"
+        ],
+        "itinerary": [
+          {
+            "day": 1,
+            "title": "Pakleni Islands Cruise",
+            "description": "Full day sailing to various islands with swimming, snorkeling and lunch at a seaside restaurant"
+          }
+        ],
+        "included": [
+          "Professional skipper",
+          "Lunch and drinks",
+          "Snorkeling gear",
+          "Fuel and marina fees"
+        ],
+        "notIncluded": [
+          "Hotel transfers",
+          "Beach club entries"
+        ],
+        "availability": "April-October",
+        "ageRange": "All ages",
+        "meetingPoint": "Split Marina",
+        "rating": 4.9,
+        "reviewCount": 38,
+        "tags": ["sailing", "beach", "snorkeling"]
+      },
+      {
+        "id": 15,
+        "locationId": 3,
+        "title": "FRONT RANGE ROCK CLIMBING",
+        "subtitle": "Rock Climbing - Denver, Colorado, United States",
+        "host": "Vertical Limit Guides",
+        "duration": "1 day",
+        "groupSize": "1-4 people",
+        "difficulty": "Intermediate to Expert",
+        "price": 275,
+        "image": "https://images.unsplash.com/photo-1516912481808-3406841bd33c",
+        "gallery": [
+          "https://images.unsplash.com/photo-1516912481808-3406841bd33c",
+          "https://images.unsplash.com/photo-1516467508483-a7212febe31a",
+          "https://images.unsplash.com/photo-1510414842594-a61c69b5ae57"
+        ],
+        "summary": "Climb the famous sandstone cliffs just outside Denver with AMGA-certified guides. Routes available for all skill levels from beginner to advanced multi-pitch climbs.",
+        "highlights": [
+          "Personalized instruction",
+          "Variety of route options",
+          "Stunning views",
+          "Small group experience"
+        ],
+        "itinerary": [
+          {
+            "day": 1,
+            "title": "Front Range Climbing",
+            "description": "Full day of climbing at premier Front Range locations tailored to group ability"
+          }
+        ],
+        "included": [
+          "All technical gear",
+          "Professional guide",
+          "Safety equipment",
+          "Climbing instruction"
+        ],
+        "notIncluded": [
+          "Transportation",
+          "Personal items",
+          "Gratuities"
+        ],
+        "availability": "April-November",
+        "ageRange": "12+ years",
+        "meetingPoint": "Golden, CO Trailhead",
+        "rating": 4.9,
+        "reviewCount": 29,
+        "tags": ["rock climbing", "extreme sports", "adventure"]
+      },
+      {
+        "id": 16,
+        "locationId": 4,
+        "title": "MT HOOD TIMBERLINE TRAIL",
+        "subtitle": "Hiking - Portland, Oregon, United States",
+        "host": "Cascade Mountain Guides",
+        "duration": "3 days",
+        "groupSize": "3-8 people",
+        "difficulty": "Challenging",
+        "price": 550,
+        "image": "https://images.unsplash.com/photo-1506535995048-638aa1b62b77",
+        "gallery": [
+          "https://images.unsplash.com/photo-1506535995048-638aa1b62b77",
+          "https://images.unsplash.com/photo-1503614478371-6b6c92116f1e",
+          "https://images.unsplash.com/photo-1500581276021-a4bbcd0050c5"
+        ],
+        "summary": "Circumnavigate Oregon's iconic Mount Hood on this 40-mile backpacking adventure along the historic Timberline Trail. Experience glaciers, wildflower meadows, and old-growth forests.",
+        "highlights": [
+          "Complete Timberline Trail loop",
+          "Glacial river crossings",
+          "Alpine wildflowers",
+          "Mountain views"
+        ],
+        "itinerary": [
+          {
+            "day": 1,
+            "title": "Timberline to Cloud Cap",
+            "description": "Hike through alpine meadows with views of Mount Hood and Mount Jefferson"
+          },
+          {
+            "day": 2,
+            "title": "Cloud Cap to Ramona Falls",
+            "description": "Descend into forested canyons and pass multiple waterfalls"
+          },
+          {
+            "day": 3,
+            "title": "Ramona Falls to Timberline",
+            "description": "Final ascent through Paradise Park wildflower meadows back to start"
+          }
+        ],
+        "included": [
+          "Professional guides",
+          "All meals",
+          "Group camping equipment",
+          "Permits"
+        ],
+        "notIncluded": [
+          "Personal gear",
+          "Transportation to trailhead",
+          "Pre/post trip lodging"
+        ],
+        "availability": "July-September",
+        "ageRange": "18+ years",
+        "meetingPoint": "Timberline Lodge",
+        "rating": 4.9,
+        "reviewCount": 22,
+        "tags": ["backpacking", "mountaineering", "wilderness"]
       }
     ],
     "hosts": [
