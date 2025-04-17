@@ -1,4 +1,7 @@
-<template>
+
+
+
+  <template>
     <div class="home">
       <Navbar />
       
@@ -8,15 +11,31 @@
           BOOK YOUR ADVENTURE
         </router-link>
       </div>
+  <WhyChooseUs/>
+  <section4 />
+      <Section3/>
+      
+      <Footer/>
     </div>
   </template>
   
   <script>
   import Navbar from '@/components/Navbar.vue'
-  
+import WhyChooseUs from '@/components/WhyChooseUs.vue'; 
+import section4 from '@/components/section4.vue'; 
+import Login from '@/components/Login.vue';
+import Section3 from '@/components/section3.vue';
+import Footer from '@/components/Footer.vue';
   export default {
     name: 'Home',
-    components: { Navbar }
+    components: { 
+      Navbar,
+      WhyChooseUs,
+      section4,
+
+      Section3,
+      Footer
+    }
   }
   </script>
   

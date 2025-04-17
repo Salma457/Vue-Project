@@ -1,4 +1,7 @@
-<template>
+
+
+
+  <template>
     <header class="navbar">
       <div class="logo-container">
         <h1 class="logo">
@@ -11,9 +14,11 @@
         <router-link to="/adventures" class="nav-link">Explore</router-link>
         <router-link to="/register" class="nav-link">Register</router-link>
         <router-link to="/login" class="nav-link">Login</router-link>
-
-<button class="host-button" @click="$router.push('/host')">HOST AN ADVENTURE</button>
+        <button class="host-button" @click="$router.push('/host')">HOST AN ADVENTURE</button>
       </nav>
+
+
+      
     </header>
   </template>
   
@@ -31,6 +36,8 @@
     padding: 15px 30px;
     background-color: white;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 100;
   }
   
   .logo-container {
@@ -88,5 +95,18 @@
   .host-button:hover {
     background-color: #e04a50;
     transform: translateY(-2px);
+  }
+  
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      padding: 15px;
+    }
+    
+    .nav-links {
+      margin-top: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
   }
   </style>

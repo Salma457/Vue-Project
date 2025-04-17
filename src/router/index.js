@@ -8,6 +8,11 @@ import HostDetails from '@/views/Details.vue'
 import HostItinerary from '@/views/Itinerary.vue'
 import HostSubmit from '@/views/Submit.vue'
 import Host from '@/views/host.vue'
+import Login from '@/components/Login.vue'
+import LoginPage from '@/views/LoginPage.vue'
+import RegisterPage from '@/views/RegisterPage.vue'
+import UsersList from '@/components/UsersList.vue'
+
 
 
 const routes = [
@@ -55,6 +60,23 @@ const routes = [
     path: '/submit',
     name: 'HostSubmit',
     component: HostSubmit
+  }
+  ,
+  {
+    path: '/Login',
+    name: 'login',
+    component: LoginPage
+  }, 
+  {
+    path: '/Register',
+    name: 'Register',
+    component: RegisterPage
+  },
+  
+  {
+    path: '/users',
+    name: 'users',
+    component: UsersList
   }
   
 ]
