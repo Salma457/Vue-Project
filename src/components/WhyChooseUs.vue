@@ -1,4 +1,6 @@
-<template>
+
+
+  <template>
     <div class="why-book-section">
       <h1>Why book an adventure with embark.org?</h1>
       <div class="reasons-container">
@@ -44,36 +46,42 @@
   
   <style scoped>
   .why-book-section {
-    background-color: #80DEEA; /* لون الخلفية الأزرق الفاتح */
+    background-color: #80DEEA;
     color: #333;
-    padding: 50px 20px;
+    padding: 60px 20px;
     text-align: center;
   }
   
   .why-book-section h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: bold;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
     color: #000;
   }
   
   .reasons-container {
-    margin-top: 80px; /* إضافة هامش سفلي بمقدار 40 بكسل */
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    max-width: 1000px;
+    justify-content: center;
+    gap: 30px; /* مسافات متساوية بين العناصر */
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px;
   }
   
   .reason-item {
-    width: calc(33% - 40px); /* ثلاث عناصر في الصف مع بعض المسافة */
-    margin-bottom: 40px;
+    flex: 1; /* يجعل العناصر تأخذ نفس المساحة */
+    max-width: 350px; /* تحديد أقصى عرض لكل عنصر */
     padding: 30px;
     text-align: center;
-    background-color: white; /* خلفية بيضاء للعناصر */
+    background-color: white;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .reason-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
   }
   
   .icon {
@@ -83,32 +91,67 @@
   .icon svg {
     width: 50px;
     height: 50px;
-    fill: #00BCD4; /* لون الأيقونات */
+    fill: #00BCD4;
   }
   
   .reason-item h2 {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     color: #000;
+    line-height: 1.4;
   }
   
   .reason-item p {
-    font-size: 0.95rem;
+    font-size: 1rem;
     line-height: 1.6;
     color: #555;
   }
   
-  /* استجابة للشاشات الأصغر */
-  @media (max-width: 768px) {
+  /* التكيف مع الشاشات الصغيرة */
+  @media (max-width: 992px) {
+    .reasons-container {
+      gap: 20px;
+    }
+    
     .reason-item {
-      width: calc(50% - 30px); /* عنصران في الصف للشاشات المتوسطة */
+      padding: 25px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .reasons-container {
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+    
+    .reason-item {
+      max-width: 500px;
+      width: 100%;
+    }
+    
+    .why-book-section h1 {
+      font-size: 1.8rem;
+      margin-bottom: 40px;
     }
   }
   
   @media (max-width: 576px) {
+    .why-book-section {
+      padding: 40px 15px;
+    }
+    
     .reason-item {
-      width: 100%; /* عنصر واحد في الصف للشاشات الصغيرة */
+      padding: 20px;
+    }
+    
+    .reason-item h2 {
+      font-size: 1.3rem;
+    }
+    
+    .reason-item p {
+      font-size: 0.95rem;
     }
   }
   </style>

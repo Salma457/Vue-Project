@@ -9,11 +9,13 @@
         :key="traveler.name" 
         class="traveler"
       >
-        <img 
-          :src="traveler.image" 
-          :alt="traveler.name" 
-          class="traveler-image"
-        >
+        <div class="image-wrapper">
+          <img 
+            :src="traveler.image" 
+            :alt="traveler.name" 
+            class="traveler-image"
+          >
+        </div>
         <div class="traveler-name">{{ traveler.name }}</div>
         <div class="traveler-roles">{{ traveler.roles }}</div>
       </div>
@@ -92,15 +94,42 @@ Mountaineer`,
   border-radius: 8px;
   background: white;
   box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.traveler:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  border-color: #2a5c8d;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+.traveler:hover .image-wrapper {
+  transform: scale(1.05);
+  border-color: #2a5c8d;
 }
 
 .traveler-image {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  margin-bottom: 15px;
-  border: 3px solid #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+.traveler:hover .traveler-image {
+  transform: scale(1.1);
 }
 
 .traveler-name {
@@ -108,6 +137,12 @@ Mountaineer`,
   color: #2a5c8d;
   font-size: 18px;
   margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.traveler:hover .traveler-name {
+  color: #1a3a5a;
+  transform: scale(1.05);
 }
 
 .traveler-roles {
@@ -115,12 +150,39 @@ Mountaineer`,
   font-size: 14px;
   line-height: 1.6;
   white-space: pre-line;
+  transition: all 0.3s ease;
+}
+
+.traveler:hover .traveler-roles {
+  color: #444;
+  transform: translateY(5px);
+}
+
+/* تأثير خلفية عند الهوفر */
+.traveler::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: #2a5c8d;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.traveler:hover::before {
+  transform: scaleX(1);
 }
 
 @media (max-width: 768px) {
   .traveler {
     width: 100%;
     max-width: 280px;
+  }
+  
+  .traveler:hover {
+    transform: none;
   }
 }
 </style>
