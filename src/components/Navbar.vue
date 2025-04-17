@@ -11,7 +11,8 @@
         <router-link to="/adventures" class="nav-link">Explore</router-link>
         <router-link to="/register" class="nav-link">Register</router-link>
         <router-link to="/login" class="nav-link">Login</router-link>
-        <button class="host-button">HOST AN ADVENTURE</button>
+
+<button class="host-button" @click="$router.push('/host')">HOST AN ADVENTURE</button>
       </nav>
     </header>
   </template>
