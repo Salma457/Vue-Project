@@ -1,111 +1,218 @@
 <template>
-  <div class="container">
-    <div class="row">
-        <div class="mb-3 col-3">
-            <label for="advDate" class="form-label">Date:</label>
-            <input type="date" class="form-control" v-model="adventureDate" id="advDate" >
-        </div>
-        <div class="mb-3 col-3">
-            <label for="advTime" class="form-label">Time:</label>
-            <div class="dropdown">
-                <button
-                class="btn btn-outline-secondary w-100 dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                >
-                {{ adventureTime || 'Select Time' }}
-                </button>
-                <ul class="dropdown-menu w-100">
-                <li
-                    v-for="time in timeOptions"
-                    :key="time"
-                    @click="selectTime(time)"
-                >
-                    <button class="dropdown-item" type="button">{{ time }}</button>
-                </li>
-                </ul>
+  <div>
+    <Navbar/>
+    <div class="container py-4" v-if="adventureStore.adventure.length > 0 ">
+      <div class="row g-4">
+        <!-- Booking Form Section -->
+        <div class="col-lg-8">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="my-3">{{ adventureStore.adventure[0].title }}</h5>
+              <h4 class="card-title mb-4">Book Your Adventure</h4>
+              <div class="row g-3">
+                <!-- Date Picker -->
+                <div class="col-md-4">
+                  <label for="advDate" class="form-label fw-bold">Date</label>
+                  <input 
+                    type="date" 
+                    class="form-control form-control-lg" 
+                    v-model="adventureDate" 
+                    id="advDate"
+                  >
+                </div>
+                
+                <!-- Time Selector -->
+                <div class="col-md-4">
+                  <label class="form-label fw-bold">Time</label>
+                  <select 
+                    class="form-select form-select-lg" 
+                    v-model="adventureTime"
+                  >
+                    <option value="" disabled selected>Select time</option>
+                    <option 
+                      v-for="time in timeOptions" 
+                      :key="time" 
+                      :value="time"
+                    >
+                      {{ time }}
+                    </option>
+                  </select>
+                </div>
+                
+                <!-- Group Size -->
+                <div class="col-md-4">
+                  <label class="form-label fw-bold">Group Size</label>
+                  <select 
+                    class="form-select form-select-lg" 
+                    v-model="groupsize"
+                  >
+                    <option value="0" disabled selected>Select group size</option>
+                    <option 
+                      v-for="size in groupSizeRange" 
+                      :key="size" 
+                      :value="size"
+                    >
+                      {{ size }} {{ size === 1 ? 'person' : 'people' }}
+                    </option>
+                  </select>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-        <div class="mb-3 col-3">
-            <label for="groupSize" class="form-label">Group Size:</label>
-            <div class="dropdown">
-                <button
-                class="btn btn-outline-secondary w-100 dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                >
-                {{ groupsize || 'Select Time' }}
-                </button>
-                <ul class="dropdown-menu w-100">
-                <li
-                    v-for="gsize in groupSizes"
-                    :key="time"
-                    @click="selectTime(time)"
-                >
-                    <button class="dropdown-item" type="button">{{ time }}</button>
-                </li>
-                </ul>
+      </div>
+      
+      <div class="row">
+        <!-- Price Summary Section -->
+        <div class="col-lg-4 mt-5">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h4 class="card-title mb-4">Price Summary</h4>
+              
+              <div class="d-flex justify-content-between mb-2">
+                <span>Price per person:</span>
+                <span class="fw-bold">${{ adventureStore.adventure[0].price }}</span>
+              </div>
+              
+              <div class="d-flex justify-content-between mb-3" v-if="groupsize > 0">
+                <span>
+                  {{ groupsize }} {{ groupsize === 1 ? 'person' : 'people' }}:
+                </span>
+                <span class="fw-bold">${{ totalPrice }}</span>
+              </div>
+              
+              <div class="alert alert-info" v-else>
+                Please select group size
+              </div>
+              
+              <button 
+                class="btn btn-primary w-100 py-2" 
+                :disabled="!isFormComplete"
+                @click="addBooking"
+              >
+                Book Now
+              </button>
             </div>
+          </div>
         </div>
-
-
-        
+      </div>
+    </div>
+    <div class="text-center d-flex align-items-center justify-content-center flex-column" style="height: 100vh;" v-else>
+      <h2 class=" mb-5" >Please select an adventure first!</h2>
+      <router-link to="/adventures">
+        <button class="btn btn-primary">Browse Adventures</button>
+      </router-link>
     </div>
   </div>
 </template>
 
 <script>
+import { adventureStore } from '@/stores/adventureStore';
+import Navbar from '@/components/Navbar.vue';
 export default {
+  data() {
+    return {
+      adventureStore,
+      adventureDate: '',
+      adventureTime: '',
+      groupsize: 0,
+      timeOptions: [
+        '6:00 AM', '6:30 AM',
+        '7:00 AM', '7:30 AM',
+        '8:00 AM', '8:30 AM',
+        '9:00 AM', '9:30 AM',
+        '10:00 AM', '10:30 AM',
+        '11:00 AM', '11:30 AM',
+        '12:00 PM', '12:30 PM',
+        '1:00 PM', '1:30 PM',
+        '2:00 PM', '2:30 PM',
+        '3:00 PM', '3:30 PM',
+        '4:00 PM', '4:30 PM',
+        '5:00 PM', '5:30 PM',
+        '6:00 PM', '6:30 PM'
+      ],
+      Bookings:[]
+    };
+  },
+  components:{Navbar}
+  ,
+  computed: {
 
-    data() {
-        return {
-            adventureDate:'',
-            adventureTime:'',
-            groupsize:0,
-            timeOptions:[
-                '1:00 AM',  '1:30 AM',
-                '2:00 AM',  '2:30 AM',
-                '3:00 AM',  '3:30 AM',
-                '4:00 AM',  '4:30 AM',
-                '5:00 AM',  '5:30 AM',
-                '6:00 AM',  '6:30 AM',
-                '7:00 AM',  '7:30 AM',
-                '8:00 AM',  '8:30 AM',
-                '9:00 AM',  '9:30 AM',
-                '10:00 AM', '10:30 AM',
-                '11:00 AM', '11:30 AM',
-                '12:00 PM', '12:30 PM',
-                '1:00 PM',  '1:30 PM',
-                '2:00 PM',  '2:30 PM',
-                '3:00 PM',  '3:30 PM',
-                '4:00 PM',  '4:30 PM',
-                '5:00 PM',  '5:30 PM',
-                '6:00 PM',  '6:30 PM',
-                '7:00 PM',  '7:30 PM',
-                '8:00 PM',  '8:30 PM',
-                '9:00 PM',  '9:30 PM',
-                '10:00 PM', '10:30 PM',
-                '11:00 PM', '11:30 PM',
-                '12:00 AM', '12:30 AM'
-            ],
-            groupSizes:[4,5,6,7,8,9]
-
-        }
+    groupSizeRange() {
+      const groupSizeString = this.adventureStore.adventure[0]?.groupSize || "0 people";
+      const numbers = groupSizeString.match(/\d+/g);
+      if (!numbers || numbers.length < 2) return [];
+      const start = parseInt(numbers[0]);
+      const end = parseInt(numbers[1]);
+      return Array.from({ length: end - start + 1 }, (_, i) => start + i);
     },
-    methods:{
-        selectTime(slectedTiem){
-            this.adventureTime = slectedTiem;
-            console.log(this.adventureTime)
-        }
+
+    totalPrice() {
+      return this.groupsize * (this.adventureStore.adventure[0]?.price || 0);
+    },
+
+    isFormComplete() {
+      return this.adventureDate && this.adventureTime && this.groupsize > 0;
     }
-}
+  },
+
+  methods:{
+
+    async addBooking(){
+
+      let newId = this.Bookings?.[this.Bookings.length - 1]?.id + 1 ?? 1;
+      let user = JSON.parse(localStorage.getItem('currentUser'));
+
+      let bookingData ={
+        id:newId,
+        adventureId: adventureStore.adventure[0].id,
+        userId:user.email,
+        date: this.adventureDate,
+        time: this.adventureTime,
+        participants: this.groupsize,
+        status:'confirmed',
+        totalPrice: this.totalPrice,
+      } 
+      // console.log(bookingData)
+      await this.pushBooking(bookingData);
+      // console.log(this.Bookings);
+    },
+
+    async pushBooking(bookingDt){
+
+      await fetch('http://localhost:5000/bookings',{
+        method:"POST",
+        header:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify(bookingDt)
+      })
+      this.Bookings.push(bookingDt);
+    }
+
+
+  },
+
+  async created(){
+    let fetchedBookings = await fetch(`http://localhost:5000/bookings`);
+    this.Bookings = await fetchedBookings.json();
+  }
+};
 </script>
 
-<style>
-.dropdown-menu {
-  max-height: 200px; /* Adjust this value as needed */
-  overflow-y: auto;
+<style scoped>
+.card {
+  border-radius: 12px;
+  border: none;
+}
+
+.form-control, .form-select {
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}
+
+.btn-primary {
+  border-radius: 8px;
+  font-weight: 500;
 }
 </style>
