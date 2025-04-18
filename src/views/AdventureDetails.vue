@@ -4,14 +4,14 @@
 
         <div style="height: 60vh; overflow: hidden;">
             <img 
-            :src="adventureStore.adventure[0].image"
+            :src="adventure.image"
             class="img-fluid h-100 w-100"
             style="object-fit: cover;"
             alt="Adventure image"
             >
         </div>    
-        <ShortInfo :adventureSt="adventureStore.adventure[0]" ></ShortInfo>
-        <AdventureFullView class="ps-5" :fullInfo="adventureStore.adventure[0]"></AdventureFullView>
+        <ShortInfo :adventureSt="adventure" ></ShortInfo>
+        <AdventureFullView class="ps-5" :fullInfo="adventure"></AdventureFullView>
     </div>
 </template>
 
@@ -26,7 +26,7 @@
         data() {
             return {
             adventureStore,
-            
+            adventure:{}
 
             }
         },
@@ -38,8 +38,8 @@
         async created() {
             let _id = this.$route.params.id;
             console.log(_id);
-            await this.adventureStore.getAdventure(_id)
-            console.log(adventureStore.adventure)
+             this.adventure = await this.adventureStore.getAdventure(_id)
+            // console.log(adventureStore.adventure)
         },
 
     }
