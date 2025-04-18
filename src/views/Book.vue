@@ -176,6 +176,10 @@ export default {
       // console.log(bookingData)
       await this.pushBooking(bookingData);
       // console.log(this.Bookings);
+
+       // Redirect after successful booking
+      this.$router.push('/');
+    
     },
 
     async pushBooking(bookingDt){

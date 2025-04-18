@@ -959,6 +959,36 @@
       "participants": 2,
       "status": "confirmed",
       "totalPrice": 690
+    },
+    {
+      "id": 1,
+      "adventureId": 2,
+      "userId": "abdo@gmail.com",
+      "date": "2025-04-08",
+      "time": "7:30 AM",
+      "participants": 3,
+      "status": "confirmed",
+      "totalPrice": 597
+    },
+    {
+      "id": 2,
+      "adventureId": 2,
+      "userId": "abdo@gmail.com",
+      "date": "2025-04-24",
+      "time": "7:30 AM",
+      "participants": 3,
+      "status": "confirmed",
+      "totalPrice": 597
+    },
+    {
+      "id": 3,
+      "adventureId": 2,
+      "userId": "abdo@gmail.com",
+      "date": "2025-04-23",
+      "time": "8:30 AM",
+      "participants": 3,
+      "status": "confirmed",
+      "totalPrice": 597
     }
   ],
   "users": [
