@@ -9,6 +9,7 @@ import HostItinerary from '@/views/Itinerary.vue'
 import HostSubmit from '@/views/Submit.vue'
 import Host from '@/views/host.vue'
 
+import AdventureDetails from '@/views/AdventureDetails.vue'
 
 const routes = [
   {
@@ -56,7 +57,11 @@ const routes = [
     name: 'HostSubmit',
     component: HostSubmit
   }
-  
+  ,
+  {
+    path:'/adventures/:id',
+    component: AdventureDetails
+  }
 ]
 
 const router = createRouter({
