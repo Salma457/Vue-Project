@@ -46,7 +46,7 @@
   
   <style scoped>
   .why-book-section {
-    background-color: #80DEEA;
+    background-color: #137582;
     color: #333;
     padding: 60px 20px;
     text-align: center;
