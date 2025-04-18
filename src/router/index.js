@@ -8,9 +8,8 @@ import HostDetails from '@/views/Details.vue'
 import HostItinerary from '@/views/Itinerary.vue'
 import HostSubmit from '@/views/Submit.vue'
 import Host from '@/views/host.vue'
-
 import AdventureDetails from '@/views/AdventureDetails.vue'
-
+import Book from '@/views/Book.vue'
 const routes = [
   {
     path: '/',
@@ -61,6 +60,10 @@ const routes = [
   {
     path:'/adventures/:id',
     component: AdventureDetails
+  },
+  {
+    path:'/Book',
+    component:Book
   }
 ]
 
