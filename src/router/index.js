@@ -10,6 +10,14 @@ import HostSubmit from '@/views/Submit.vue'
 import Host from '@/views/host.vue'
 import AdventureDetails from '@/views/AdventureDetails.vue'
 import Book from '@/views/Book.vue'
+import Login from '@/components/Login.vue'
+import LoginPage from '@/views/LoginPage.vue'
+import RegisterPage from '@/views/RegisterPage.vue'
+import UsersList from '@/components/UsersList.vue'
+import error404page from '@/views/error404page.vue'
+
+
+
 const routes = [
   {
     path: '/',
@@ -56,6 +64,29 @@ const routes = [
     name: 'HostSubmit',
     component: HostSubmit
   }
+  ,
+  {
+    path: '/Login',
+    name: 'login',
+    component: LoginPage
+  }, 
+  {
+    path: '/Register',
+    name: 'Register',
+    component: RegisterPage
+  },
+  
+  {
+    path: '/users',
+    name: 'users',
+    component: UsersList
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: '404',
+    component:  error404page
+  }
+  
   ,
   {
     path:'/adventures/:id',
