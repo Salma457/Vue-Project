@@ -7,12 +7,12 @@
         <a href="#"><img src="@/assets/email-icon--clipart-best-22.png" alt="Email"></a>
       </div>
       <div class="footer-links">
-        <router-link to="/about">About</router-link>
-        <router-link to="/team">Team</router-link>
-        <router-link to="/faqs">FAQs</router-link>
-        <router-link to="/privacy">Privacy</router-link>
-        <router-link to="/terms">Terms</router-link>
-        <router-link to="/feedback">Feedback</router-link>
+        <router-link to="#">About</router-link>
+        <router-link to="#">Team</router-link>
+        <router-link to="#">FAQs</router-link>
+        <router-link to="#">Privacy</router-link>
+        <router-link to="#">Terms</router-link>
+        <router-link to="#">Feedback</router-link>
       </div>
       <div class="copyright">
         © 2023 Embark.org - Developed by <a href="https://boxnetsolutions.com/" target="_blank">Box Net Solutions</a>
