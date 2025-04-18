@@ -35,15 +35,17 @@
   
       <!-- عرض المغامرات -->
       <div class="adventures-grid">
-        <AdventureCard 
-          v-for="adventure in filteredAdventures" 
-          :key="adventure.id" 
-          :adventure="adventure"
-          :location="getLocation(adventure.locationId)"
-        />
+        <div v-for="adventure in filteredAdventures" :key="adventure.id">
+          <router-link :to="`/adventures/${adventure.id}`" class="text-decoration-none">
+            <AdventureCard  
+              :adventure="adventure"
+              :location="getLocation(adventure.locationId)"
+            />
+          </router-link>
+        </div>
       </div>
     </div>
-  </template>
+</template>
   
   <script>
   import axios from 'axios'
