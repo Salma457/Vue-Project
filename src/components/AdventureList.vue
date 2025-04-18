@@ -60,11 +60,16 @@
       return {
         locations: [],
         adventures: [],
-        selectedCountry: '',
+        selectedCountry: this.$route.query.country || '', // التعديل هنا
         selectedType: '',
         selectedDifficulty: ''
       }
-    },
+    }, props: {
+    country: {
+      type: String,
+      default: ''
+    }
+  },
     async created() {
       try {
         const [locationsRes, adventuresRes] = await Promise.all([
@@ -73,6 +78,10 @@
         ])
         this.locations = locationsRes.data
         this.adventures = adventuresRes.data
+          // إذا كان هناك فلتر بلد من الرابط
+      if (this.country) {
+        this.selectedCountry = this.country;
+      }
       } catch (error) {
         console.error('Error loading data:', error)
       }
@@ -105,13 +114,36 @@
       }
     },
     methods: {
+      goToCountryAdventures(countryName) {
+    this.$router.push({
+      name: 'Adventures',
+      query: { 
+        country: countryName 
+      }
+    });
+  },
       getLocation(locationId) {
         return this.locations.find(loc => loc.id === locationId)
       },
       applyFilters() {
-        // يتم تنفيذ الفلترة تلقائياً عبر computed property
-      }
+// تحديث رابط URL عند تغيير الفلتر
+this.$router.push({
+        query: {
+          country: this.selectedCountry || undefined,
+          type: this.selectedType || undefined,
+          difficulty: this.selectedDifficulty || undefined
+        }
+      });
+          }
+    },
+    watch: {
+    '$route.query'(newQuery) {
+      // تحديث الفلاتر عند تغيير URL
+      this.selectedCountry = newQuery.country || '';
+      this.selectedType = newQuery.type || '';
+      this.selectedDifficulty = newQuery.difficulty || '';
     }
+  }
   }
   </script>
   
