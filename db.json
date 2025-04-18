@@ -109,7 +109,12 @@
       "meetingPoint": "5022 Santa Monica Ave, Ocean Beach, San Diego",
       "rating": 4.8,
       "reviewCount": 24,
-      "tags": ["surfing", "snowboarding", "extreme sports", "family friendly"]
+      "tags": [
+        "surfing",
+        "snowboarding",
+        "extreme sports",
+        "family friendly"
+      ]
     },
     {
       "id": 2,
@@ -148,7 +153,11 @@
       "availability": "Weekends",
       "rating": 4.9,
       "reviewCount": 17,
-      "tags": ["photography", "creative", "sightseeing"]
+      "tags": [
+        "photography",
+        "creative",
+        "sightseeing"
+      ]
     },
     {
       "id": 3,
@@ -175,7 +184,11 @@
         }
       ],
       "rating": 4.7,
-      "tags": ["kayaking", "island hopping", "water sports"]
+      "tags": [
+        "kayaking",
+        "island hopping",
+        "water sports"
+      ]
     },
     {
       "id": 4,
@@ -201,9 +214,17 @@
           "description": "Summit neighboring 14,267ft peak via dramatic ridge"
         }
       ],
-      "included": ["All technical gear", "Camping equipment", "Mountain guide"],
+      "included": [
+        "All technical gear",
+        "Camping equipment",
+        "Mountain guide"
+      ],
       "rating": 4.9,
-      "tags": ["mountaineering", "camping", "extreme"]
+      "tags": [
+        "mountaineering",
+        "camping",
+        "extreme"
+      ]
     },
     {
       "id": 5,
@@ -223,7 +244,11 @@
         "Swimming hole access"
       ],
       "rating": 4.7,
-      "tags": ["hiking", "waterfalls", "family friendly"]
+      "tags": [
+        "hiking",
+        "waterfalls",
+        "family friendly"
+      ]
     },
     {
       "id": 6,
@@ -237,10 +262,18 @@
       "price": 175,
       "image": "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa",
       "summary": "Spot orcas, humpbacks and gray whales from our custom expedition vessel with marine biologists on board.",
-      "included": ["Expert commentary", "Snacks", "Hydrophone for whale sounds"],
+      "included": [
+        "Expert commentary",
+        "Snacks",
+        "Hydrophone for whale sounds"
+      ],
       "season": "May-October",
       "rating": 4.8,
-      "tags": ["wildlife", "boating", "family friendly"]
+      "tags": [
+        "wildlife",
+        "boating",
+        "family friendly"
+      ]
     },
     {
       "id": 7,
@@ -254,10 +287,13 @@
       "price": 45,
       "image": "https://www.embark.org/tours_images/7018/17428592210.jpg",
       "summary": "Explore 1700 years of history in Diocletian's Palace with a local archaeologist guide.",
-      "rating": 5.0,
-      "tags": ["cultural", "walking tour", "history"]
+      "rating": 5,
+      "tags": [
+        "cultural",
+        "walking tour",
+        "history"
+      ]
     },
-
     {
       "id": 8,
       "locationId": 2,
@@ -271,7 +307,11 @@
       "image": "https://images.unsplash.com/photo-1516298773066-c48f8e9bd92b",
       "summary": "Descend 100m cliffs on Table Mountain with panoramic views of Cape Town below you.",
       "rating": 4.9,
-      "tags": ["rock climbing", "extreme", "views"]
+      "tags": [
+        "rock climbing",
+        "extreme",
+        "views"
+      ]
     },
     {
       "id": 9,
@@ -325,7 +365,11 @@
       "meetingPoint": "Denver Mountain Sports Shop",
       "rating": 4.9,
       "reviewCount": 18,
-      "tags": ["mountain biking", "camping", "wilderness"]
+      "tags": [
+        "mountain biking",
+        "camping",
+        "wilderness"
+      ]
     },
     {
       "id": 10,
@@ -373,7 +417,11 @@
       "meetingPoint": "Downtown Portland Wine Center",
       "rating": 4.8,
       "reviewCount": 32,
-      "tags": ["wine", "culinary", "relaxation"]
+      "tags": [
+        "wine",
+        "culinary",
+        "relaxation"
+      ]
     },
     {
       "id": 11,
@@ -437,7 +485,11 @@
       "meetingPoint": "Seattle REI Store",
       "rating": 4.9,
       "reviewCount": 27,
-      "tags": ["backpacking", "wilderness", "national park"]
+      "tags": [
+        "backpacking",
+        "wilderness",
+        "national park"
+      ]
     },
     {
       "id": 12,
@@ -482,9 +534,13 @@
       "availability": "Year-round",
       "ageRange": "All ages",
       "meetingPoint": "Hotel pickup in Cape Town",
-      "rating": 5.0,
+      "rating": 5,
       "reviewCount": 41,
-      "tags": ["safari", "wildlife", "family friendly"]
+      "tags": [
+        "safari",
+        "wildlife",
+        "family friendly"
+      ]
     },
     {
       "id": 13,
@@ -538,7 +594,11 @@
       "meetingPoint": "Borrego Springs Park",
       "rating": 4.8,
       "reviewCount": 15,
-      "tags": ["kayaking", "camping", "ecotourism"]
+      "tags": [
+        "kayaking",
+        "camping",
+        "ecotourism"
+      ]
     },
     {
       "id": 14,
@@ -585,7 +645,11 @@
       "meetingPoint": "Split Marina",
       "rating": 4.9,
       "reviewCount": 38,
-      "tags": ["sailing", "beach", "snorkeling"]
+      "tags": [
+        "sailing",
+        "beach",
+        "snorkeling"
+      ]
     },
     {
       "id": 15,
@@ -633,7 +697,11 @@
       "meetingPoint": "Golden, CO Trailhead",
       "rating": 4.9,
       "reviewCount": 29,
-      "tags": ["rock climbing", "extreme sports", "adventure"]
+      "tags": [
+        "rock climbing",
+        "extreme sports",
+        "adventure"
+      ]
     },
     {
       "id": 16,
@@ -691,7 +759,11 @@
       "meetingPoint": "Timberline Lodge",
       "rating": 4.9,
       "reviewCount": 22,
-      "tags": ["backpacking", "mountaineering", "wilderness"]
+      "tags": [
+        "backpacking",
+        "mountaineering",
+        "wilderness"
+      ]
     }
   ],
   "hosts": [
@@ -700,20 +772,36 @@
       "name": "Enk Holmgren",
       "bio": "Professional surf and snowboard instructor with 10 years experience guiding adventures throughout Southern California. Certified yoga instructor and passionate about sharing the stoke of outdoor adventures.",
       "image": "https://randomuser.me/api/portraits/men/32.jpg",
-      "specialties": ["Surfing", "Snowboarding", "Adventure Guiding", "Yoga Instruction"],
+      "specialties": [
+        "Surfing",
+        "Snowboarding",
+        "Adventure Guiding",
+        "Yoga Instruction"
+      ],
       "rating": 4.9,
       "adventureCount": 3,
       "yearsHosting": 5,
-      "languages": ["English", "Spanish"],
-      "verifications": ["ID verified", "Email verified", "Phone verified"]
+      "languages": [
+        "English",
+        "Spanish"
+      ],
+      "verifications": [
+        "ID verified",
+        "Email verified",
+        "Phone verified"
+      ]
     },
     {
       "id": 2,
       "name": "Lerato Mbeki",
       "bio": "Award-winning photographer with exhibitions in Cape Town and Johannesburg. Specializes in landscape and adventure photography education.",
       "image": "https://randomuser.me/api/portraits/women/44.jpg",
-      "specialties": ["Photography", "Photo Editing", "Location Scouting"],
-      "rating": 5.0,
+      "specialties": [
+        "Photography",
+        "Photo Editing",
+        "Location Scouting"
+      ],
+      "rating": 5,
       "adventureCount": 1,
       "yearsHosting": 2
     },
@@ -722,7 +810,11 @@
       "name": "Ivan Horvat",
       "bio": "Croatian national kayaking champion turned adventure guide. Knows every hidden gem along the Dalmatian coast.",
       "image": "https://randomuser.me/api/portraits/men/75.jpg",
-      "specialties": ["Kayaking", "Marine Ecology", "Local History"],
+      "specialties": [
+        "Kayaking",
+        "Marine Ecology",
+        "Local History"
+      ],
       "rating": 4.8,
       "yearsHosting": 7
     },
@@ -731,15 +823,23 @@
       "name": "Sarah McKinley",
       "bio": "IFMGA-certified mountain guide with 15 years of experience leading technical ascents in the Rockies.",
       "image": "https://randomuser.me/api/portraits/women/68.jpg",
-      "specialties": ["Mountaineering", "Ice Climbing", "Wilderness First Aid"],
-      "rating": 5.0
+      "specialties": [
+        "Mountaineering",
+        "Ice Climbing",
+        "Wilderness First Aid"
+      ],
+      "rating": 5
     },
     {
       "id": 5,
       "name": "Ethan Rivers",
       "bio": "Native Oregonian who has explored every trail in the Columbia Gorge since childhood.",
       "image": "https://randomuser.me/api/portraits/men/41.jpg",
-      "specialties": ["Flora/Fauna Identification", "Nature Photography", "Leave No Trace"],
+      "specialties": [
+        "Flora/Fauna Identification",
+        "Nature Photography",
+        "Leave No Trace"
+      ],
       "rating": 4.8
     },
     {
@@ -747,7 +847,11 @@
       "name": "Marine Discovery Team",
       "bio": "Team of marine biologists dedicated to ethical wildlife encounters and ocean conservation.",
       "image": "https://randomuser.me/api/portraits/lego/6.jpg",
-      "specialties": ["Marine Biology", "Conservation", "Boat Handling"],
+      "specialties": [
+        "Marine Biology",
+        "Conservation",
+        "Boat Handling"
+      ],
       "rating": 4.9
     },
     {
@@ -755,15 +859,23 @@
       "name": "Antonia Ivanović",
       "bio": "PhD in Archaeology specializing in Roman history. Licensed tour guide since 2010.",
       "image": "https://randomuser.me/api/portraits/women/27.jpg",
-      "specialties": ["Ancient History", "Cultural Interpretation", "Museum Access"],
-      "rating": 5.0
+      "specialties": [
+        "Ancient History",
+        "Cultural Interpretation",
+        "Museum Access"
+      ],
+      "rating": 5
     },
     {
       "id": 8,
       "name": "Thando Nkosi",
       "bio": "Professional climber and certified rope access technician with 8 years of guiding experience.",
       "image": "https://randomuser.me/api/portraits/men/88.jpg",
-      "specialties": ["Rock Climbing", "Rappelling", "Cliff Rescue"],
+      "specialties": [
+        "Rock Climbing",
+        "Rappelling",
+        "Cliff Rescue"
+      ],
       "rating": 4.9
     }
   ],
@@ -839,50 +951,14 @@
   ],
   "bookings": [
     {
-      "id": 1,
+      "id": null,
       "adventureId": 1,
-      "userId": "user123",
-      "date": "2024-07-15",
+      "userId": "abdo@gmail.com",
+      "date": "2025-04-16",
+      "time": "7:00 AM",
       "participants": 2,
       "status": "confirmed",
-      "totalPrice": 690,
-      "specialRequests": "One vegetarian participant"
-    },
-    {
-      "id": 2,
-      "adventureId": 2,
-      "userId": "user456",
-      "date": "2024-03-10",
-      "participants": 1,
-      "status": "completed",
-      "totalPrice": 199
-    },
-    {
-      "id": 3,
-      "adventureId": 4,
-      "userId": "user789",
-      "date": "2024-08-12",
-      "participants": 4,
-      "status": "confirmed",
-      "totalPrice": 1680
-    },
-    {
-      "id": 4,
-      "adventureId": 7,
-      "userId": "user123",
-      "date": "2024-05-03",
-      "participants": 2,
-      "status": "pending",
-      "totalPrice": 90
-    },
-    {
-      "id": 5,
-      "adventureId": 6,
-      "userId": "user456",
-      "date": "2024-06-20",
-      "participants": 3,
-      "status": "confirmed",
-      "totalPrice": 525
+      "totalPrice": 690
     }
   ],
   "users": [
@@ -891,7 +967,10 @@
       "name": "Alex Johnson",
       "email": "alex@example.com",
       "image": "https://randomuser.me/api/portraits/men/12.jpg",
-      "bookings": [1, 4],
+      "bookings": [
+        1,
+        4
+      ],
       "joined": "2022-05-15"
     },
     {
@@ -899,7 +978,10 @@
       "name": "Sam Taylor",
       "email": "sam@example.com",
       "image": "https://randomuser.me/api/portraits/women/33.jpg",
-      "bookings": [2, 5],
+      "bookings": [
+        2,
+        5
+      ],
       "joined": "2023-01-22"
     },
     {
@@ -907,7 +989,9 @@
       "name": "Jordan Lee",
       "email": "jordan@example.com",
       "image": "https://randomuser.me/api/portraits/women/52.jpg",
-      "bookings": [3],
+      "bookings": [
+        3
+      ],
       "joined": "2023-08-10"
     }
   ]
