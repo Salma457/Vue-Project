@@ -9,5 +9,11 @@ export default {
 </script>
 
 <style>
-/* أنماط عامة إن وجدت */
+/* Global styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
 </style>

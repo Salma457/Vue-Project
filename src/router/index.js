@@ -15,7 +15,7 @@ import LoginPage from '@/views/LoginPage.vue'
 import RegisterPage from '@/views/RegisterPage.vue'
 import UsersList from '@/components/UsersList.vue'
 import error404page from '@/views/error404page.vue'
-
+import AddAdventure from '../views/AddAdventure.vue'
 
 
 const routes = [
@@ -51,6 +51,11 @@ const routes = [
     component: HostPhotos
   },
   {
+    path: '/add-adventure',
+    name: 'AddAdventure',
+    component: AddAdventure
+  },
+  {
     path: '/details',
     name: 'HostDetails',
     component: HostDetails
@@ -81,6 +86,11 @@ const routes = [
     path: '/users',
     name: 'users',
     component: UsersList
+  },
+  {
+    path: '/host/add',
+    name: 'AddAdventure',
+    component: () => import('@/views/AddAdventure.vue')
   },
   {
     path: '/:pathMatch(.*)*',
