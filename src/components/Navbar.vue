@@ -123,6 +123,10 @@
   
       <nav class="nav-links">
         <router-link to="/adventures" class="nav-link">Explore</router-link>
+        <router-link to="/wishlist" class="nav-link">
+          <!-- <span class="wishlist-icon">❤️</span> -->
+      Wishlist 
+    </router-link>
   
         <template v-if="!isLoggedIn">
           <router-link to="/register" class="nav-link">Register</router-link>
