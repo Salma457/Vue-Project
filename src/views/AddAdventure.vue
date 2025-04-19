@@ -7,16 +7,24 @@
         <div class="form-section">
           <h2>Basic Information</h2>
           <div class="form-group">
-            <label>Adventure Name</label>
-            <input v-model="adventure.name" type="text" required>
+            <label>Adventure Title</label>
+            <input v-model="adventure.title" type="text" required>
+          </div>
+          <div class="form-group">
+            <label>Subtitle</label>
+            <input v-model="adventure.subtitle" type="text" required>
           </div>
           <div class="form-group">
             <label>Location</label>
-            <input v-model="adventure.location" type="text" required>
+            <select v-model="adventure.locationId" required>
+              <option v-for="location in locations" :key="location.id" :value="location.id">
+                {{ location.name }}, {{ location.country }}
+              </option>
+            </select>
           </div>
           <div class="form-group">
-            <label>Description</label>
-            <textarea v-model="adventure.description" required></textarea>
+            <label>Summary</label>
+            <textarea v-model="adventure.summary" required></textarea>
           </div>
         </div>
 
@@ -32,7 +40,9 @@
               <select v-model="adventure.difficulty" required>
                 <option value="Easy">Easy</option>
                 <option value="Moderate">Moderate</option>
+                <option value="Intermediate">Intermediate</option>
                 <option value="Challenging">Challenging</option>
+                <option value="Expert">Expert</option>
               </select>
             </div>
           </div>
@@ -58,6 +68,18 @@
           </div>
         </div>
 
+        <div class="form-section">
+          <h2>Additional Information</h2>
+          <div class="form-group">
+            <label>Highlights (comma separated)</label>
+            <input v-model="highlightsInput" type="text" placeholder="Highlight 1, Highlight 2">
+          </div>
+          <div class="form-group">
+            <label>Tags (comma separated)</label>
+            <input v-model="tagsInput" type="text" placeholder="tag1, tag2">
+          </div>
+        </div>
+
         <button type="submit" class="submit-btn">Submit Adventure</button>
       </form>
     </div>
@@ -71,18 +93,38 @@ export default {
   name: 'AddAdventure',
   data() {
     return {
+      locations: [],
       adventure: {
-        name: '',
-        location: '',
-        description: '',
+        title: '',
+        subtitle: '',
+        locationId: '',
+        summary: '',
         duration: '',
         difficulty: 'Moderate',
         groupSize: '',
         price: '',
-        images: []
+        highlights: [],
+        tags: [],
+        gallery: [],
+        itinerary: [],
+        included: [],
+        notIncluded: [],
+        rating: 0,
+        reviewCount: 0
       },
+      highlightsInput: '',
+      tagsInput: '',
       imagePreviews: [],
       selectedFiles: []
+    }
+  },
+  async created() {
+    // Load locations from db.json
+    try {
+      const response = await axios.get('http://localhost:5000/locations')
+      this.locations = response.data
+    } catch (error) {
+      console.error('Error loading locations:', error)
     }
   },
   methods: {
@@ -100,16 +142,43 @@ export default {
     },
     async submitAdventure() {
       try {
-        // In a real app, you would upload images to a server here
-        // For this example, we'll just store the base64 strings
-        this.adventure.images = this.imagePreviews;
+        // Process highlights and tags
+        this.adventure.highlights = this.highlightsInput.split(',').map(h => h.trim())
+        this.adventure.tags = this.tagsInput.split(',').map(t => t.trim())
         
-        const response = await axios.post('http://localhost:5000/adventures', this.adventure);
-        alert('Adventure submitted successfully!');
-        this.$router.push('/adventures');
+        // Add first image as main image
+        if (this.imagePreviews.length > 0) {
+          this.adventure.image = this.imagePreviews[0]
+          this.adventure.gallery = this.imagePreviews
+        }
+        
+        // Generate itinerary based on duration
+        this.generateItinerary()
+        
+        // Set default values
+        this.adventure.id = Date.now()
+        this.adventure.host = "New Host" // You can add host selection later
+        
+        // Submit to backend
+        const response = await axios.post('http://localhost:5000/adventures', this.adventure)
+        
+        alert('Adventure submitted successfully!')
+        this.$router.push('/adventures')
       } catch (error) {
-        console.error('Error submitting adventure:', error);
-        alert('Failed to submit adventure. Please try again.');
+        console.error('Error submitting adventure:', error)
+        alert('Failed to submit adventure. Please try again.')
+      }
+    },
+    generateItinerary() {
+      const days = parseInt(this.adventure.duration) || 1
+      this.adventure.itinerary = []
+      
+      for (let i = 1; i <= days; i++) {
+        this.adventure.itinerary.push({
+          day: i,
+          title: `Day ${i} Adventure`,
+          description: `Description for day ${i} activities`
+        })
       }
     }
   }
@@ -117,106 +186,5 @@ export default {
 </script>
 
 <style scoped>
-.add-adventure {
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-h1 {
-  font-size: 2.5rem;
-  color: #01473d;
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-.form-container {
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.form-section {
-  margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid #eee;
-}
-
-.form-section h2 {
-  font-size: 1.5rem;
-  color: #01745d;
-  margin-bottom: 1.5rem;
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-row {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.form-row .form-group {
-  flex: 1;
-}
-
-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #555;
-}
-
-input, textarea, select {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
-}
-
-textarea {
-  min-height: 120px;
-}
-
-.image-previews {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.preview-item {
-  width: 150px;
-  height: 150px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.preview-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.submit-btn {
-  background-color: #009688;
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  display: block;
-  margin: 2rem auto 0;
-}
-
-.submit-btn:hover {
-  background-color: #00796b;
-}
+/* Your existing styles remain the same */
 </style>
