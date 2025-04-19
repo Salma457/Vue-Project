@@ -29,7 +29,6 @@ export const adventureStore = reactive({
   async getAdventure(id) {
     try {
       console.log('Fetching adventure with ID:', id)
-      console.log('Adventure data:', this.adventure)
       const response = await axios.get(`http://localhost:5000/adventures/${id}`)
       console.log('Adventure data received:', response.data)
       this.currentAdventure = response.data
