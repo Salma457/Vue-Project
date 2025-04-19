@@ -4,7 +4,10 @@
     <div class="wishlist-page">
         
            
-        
+         <!-- Toast Notification -->
+      <div v-if="showToast" class="toast" :class="toastType">
+        {{ toastMessage }}
+      </div>
         
 
       <div class="wishlist-header">
@@ -57,7 +60,11 @@ export default {
     data() {
       return {
         allAdventures: [],
-        favorites: JSON.parse(localStorage.getItem('favorites')) || []
+        favorites: JSON.parse(localStorage.getItem('favorites')) || [],
+        showToast: false,
+      toastMessage: '',
+      toastType: 'info',
+      removedAdventureTitle: ''
       }
     },
     computed: {
@@ -76,12 +83,69 @@ export default {
       removeFromFavorites(adventureId) {
         this.favorites = this.favorites.filter(id => id !== adventureId)
         localStorage.setItem('favorites', JSON.stringify(this.favorites))
-      }
+        this.showToastMessage('Removed from wishlist: ' + this.removedAdventureTitle, 'error')
+
+      },
+      showToastMessage(message, type) {
+      this.toastMessage = message
+      this.toastType = type
+      this.showToast = true
+      
+      setTimeout(() => {
+        this.showToast = false
+      }, 3000)
+    }
+  
     }
 }
 </script>
 
 <style scoped>
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 24px;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  z-index: 1000;
+  animation: fadeInUp 0.5s, fadeOut 0.5s 2.5s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toast.error {
+  background-color: #f44336; /* Red color */
+}
+
+.toast::before {
+  content: "×";
+  font-size: 1.2rem;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
 .wishlist-page {
   padding: 40px 20px;
   max-width: 1200px;
