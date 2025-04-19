@@ -4,6 +4,9 @@
     <div class="wishlist-page">
         
            
+        
+        
+
       <div class="wishlist-header">
         <h1>Wishlist</h1>
         <p v-if="favoriteAdventures.length > 0">You have {{ favoriteAdventures.length }} saved adventures</p>
