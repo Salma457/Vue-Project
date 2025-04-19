@@ -100,8 +100,10 @@ const routes = [
   
   ,
   {
-    path:'/adventures/:id',
-    component: AdventureDetails
+    path: '/adventures/:id',
+    name: 'AdventureDetails',
+    component: () => import('../views/AdventureDetails.vue'),
+    props: true // This allows route params to be passed as props
   },
   {
     path:'/Book',

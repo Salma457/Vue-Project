@@ -38,7 +38,11 @@
       <!-- Adventures Grid -->
       <div class="adventures-grid">
         <div v-for="adventure in filteredAdventures" :key="adventure.id" class="adventure-item">
-          <router-link :to="`/adventure/${adventure.id}`" class="adventure-link">
+          <router-link 
+            :to="`/adventures/${adventure.id}`" 
+            class="adventure-link"
+            :aria-label="`View details for ${adventure.title}`"
+          >
             <div class="adventure-image">
               <img :src="adventure.image" :alt="adventure.title">
             </div>
@@ -78,8 +82,8 @@ export default {
       locations: [],
       adventures: [],
       selectedCountry: this.$route.query.country || '',
-      selectedType: '',
-      selectedDifficulty: ''
+      selectedType: this.$route.query.type || '',
+      selectedDifficulty: this.$route.query.difficulty || ''
     }
   },
   props: {
@@ -227,6 +231,11 @@ export default {
   color: inherit;
   display: block;
   height: 100%;
+  transition: all 0.3s ease;
+}
+
+.adventure-link:hover {
+  opacity: 0.9;
 }
 
 .adventure-image {

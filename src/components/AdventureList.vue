@@ -34,17 +34,17 @@
       </div>
   
       <!-- عرض المغامرات -->
-      <div class="adventures-grid">
+   
+
+
         <div v-for="adventure in filteredAdventures" :key="adventure.id">
-          <router-link :to="`/adventures/${adventure.id}`" class="text-decoration-none">
-            <AdventureCard  
-              :adventure="adventure"
-              :location="getLocation(adventure.locationId)"
-            />
-          </router-link>
-        </div>
-      </div>
-    </div>
+           <router-link :to="`/adventures/${adventure.id}`" class="text-decoration-none">
+             <AdventureCard  
+               :adventure="adventure"
+               :location="getLocation(adventure.locationId)"
+             />
+           </router-link>
+         </div
 </template>
   
   <script>

@@ -12,6 +12,7 @@ export const adventureStore = reactive({
       this.adventures = response.data
     } catch (error) {
       console.error("Error fetching adventures:", error)
+      throw error
     }
   },
 
@@ -21,16 +22,24 @@ export const adventureStore = reactive({
       this.locations = response.data
     } catch (error) {
       console.error("Error fetching locations:", error)
+      throw error
     }
   },
 
-  async getAdventure(_id) {
+  async getAdventure(id) {
     try {
-      const response = await axios.get(`http://localhost:5000/adventures/${_id}`)
+      console.log('Fetching adventure with ID:', id)
+      console.log('Adventure data:', this.adventure)
+      const response = await axios.get(`http://localhost:5000/adventures/${id}`)
+      console.log('Adventure data received:', response.data)
       this.currentAdventure = response.data
       return response.data
     } catch (error) {
-      console.error("Error fetching adventure:", error)
+      console.error("Error fetching adventure:", error.response || error)
+      if (error.response?.status === 404) {
+        throw new Error("Adventure not found")
+      }
+      throw error
     }
   },
 
