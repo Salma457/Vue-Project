@@ -184,7 +184,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-/* Your existing styles remain the same */
-</style>
