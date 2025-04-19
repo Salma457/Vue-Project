@@ -1,5 +1,10 @@
 <template>
     <div class="adventure-card">
+      <button @click="toggleFavorite" class="favorite-button" :class="{ 'favorited': isFavorite }">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="heart-icon">
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+      </svg>
+    </button>
       <div class="card-image">
         <img :src="adventure.image" :alt="adventure.title">
         <div class="price-tag">${{ adventure.price }}</div>
@@ -44,6 +49,11 @@
         required: true
       }
     },
+    data() {
+    return {
+      favorites: JSON.parse(localStorage.getItem('favorites')) || []
+    }
+  },
     computed: {
       difficultyClass() {
         return {
@@ -52,8 +62,22 @@
           'challenging': this.adventure.difficulty === 'Challenging',
           'expert': this.adventure.difficulty === 'Expert'
         }
-      }
+      },
+      isFavorite() {
+      return this.favorites.includes(this.adventure.id)
     }
+    },
+  methods: {
+    toggleFavorite() {
+      
+      if (this.isFavorite) {
+        this.favorites = this.favorites.filter(id => id !== this.adventure.id)
+      } else {
+        this.favorites.push(this.adventure.id)
+      }
+      localStorage.setItem('favorites', JSON.stringify(this.favorites))
+    }
+  }
   }
   </script>
   
@@ -82,16 +106,58 @@
     object-fit: cover;
   }
   
-  .price-tag {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background-color: rgba(0,0,0,0.7);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-weight: bold;
-  }
+  .favorite-button {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.favorite-button:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.heart-icon {
+  width: 20px;
+  height: 20px;
+  fill: #ccc;
+  transition: all 0.3s ease;
+}
+
+.favorite-button.favorited .heart-icon {
+  fill: #ff5a5f;
+  animation: pulse 0.5s ease;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+.price-tag {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: rgba(0,0,0,0.7);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  z-index: 2;
+}
   
   .card-content {
     padding: 15px;

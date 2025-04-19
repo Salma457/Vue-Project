@@ -1,6 +1,5 @@
 <template>
     <div class="adventures-page">
-      <!-- شريط الفلاتر -->
       <div class="filters">
         <div class="filter-group">
           <label>All Countries</label>
@@ -33,7 +32,6 @@
         </div>
       </div>
   
-      <!-- عرض المغامرات -->
       <div class="adventures-grid">
         <div v-for="adventure in filteredAdventures" :key="adventure.id">
           <router-link :to="`/adventures/${adventure.id}`" class="text-decoration-none">
@@ -78,7 +76,6 @@
         ])
         this.locations = locationsRes.data
         this.adventures = adventuresRes.data
-          // إذا كان هناك فلتر بلد من الرابط
       if (this.country) {
         this.selectedCountry = this.country;
       }
@@ -126,7 +123,6 @@
         return this.locations.find(loc => loc.id === locationId)
       },
       applyFilters() {
-// تحديث رابط URL عند تغيير الفلتر
 this.$router.push({
         query: {
           country: this.selectedCountry || undefined,
@@ -138,7 +134,6 @@ this.$router.push({
     },
     watch: {
     '$route.query'(newQuery) {
-      // تحديث الفلاتر عند تغيير URL
       this.selectedCountry = newQuery.country || '';
       this.selectedType = newQuery.type || '';
       this.selectedDifficulty = newQuery.difficulty || '';
