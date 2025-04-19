@@ -1,11 +1,11 @@
 <template>
-    <div class="container my-4">
+    <div class="container my-4 text-start">
       <div class="card border-0 shadow-sm">
         <div class="card-body p-4">
           <!-- Reviews Header -->
           <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="mb-0">
-              <i class="bi bi-chat-square-text-fill text-primary"></i> Reviews
+               Reviews
             </h3>
             <span class="badge bg-primary rounded-pill">
               {{ reviews.length }} {{ reviews.length === 1 ? 'Review' : 'Reviews' }}
@@ -17,13 +17,15 @@
             <h5>Add Your Review</h5>
             <form @submit.prevent="submitReview">
               <div class="mb-3">
-                <label class="form-label">Rating</label>
+                <label class="form-label">Rating</label><br>
                 <div class="star-rating">
-                  <i v-for="star in 5" :key="star" 
-                     class="bi fs-4 me-1" 
-                     :class="[star <= newReview.rating ? 'bi-star-fill text-warning' : 'bi-star text-secondary']"
-                     @click="newReview.rating = star"
-                     style="cursor: pointer"></i>
+                    <span v-for="star in 5" 
+                            :key="star"
+                            @click="newReview.rating = star"
+                            style="font-size: 1.5rem; cursor: pointer"
+                            :style="{ color: star <= newReview.rating ? 'gold' : '#ccc' }">
+                        {{ (star <= newReview.rating) ? '★' : '☆' }}
+                    </span>
                 </div>
               </div>
               <div class="mb-3">
@@ -52,30 +54,33 @@
   
           <!-- Reviews List -->
           <div v-else>
-            <div v-for="review in reviews" :key="review.id" class="mb-4 pb-3 border-bottom">
-              <div class="d-flex">
-                <div class="flex-shrink-0 me-3">
-                  <img :src="review.authorImage || 'https://via.placeholder.com/60'" 
-                       class="rounded-circle" 
-                       width="60" 
-                       height="60"
-                       :alt="`${review.author}'s avatar`">
+                <div v-for="review in reviews" :key="review.id" class="mb-4 pb-3 border-bottom">
+                    <div class="d-flex">
+                    <div class="flex-shrink-0 me-3">
+                        <img :src="review.authorImage || 'https://via.placeholder.com/60'" 
+                            class="rounded-circle" 
+                            width="60" 
+                            height="60"
+                            :alt="`${review.author}'s avatar`">
+                    </div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h5 class="mb-0">{{ review.author }}</h5>
+                        <small class="text-muted">{{ formatDate(review.date) }}</small>
+                        </div>
+                        <div class="mb-2 star-rating">
+                        <span v-for="star in 5" 
+                                :key="star"
+                                style="font-size: 1.25rem; cursor: default"
+                                :style="{ color: star <= review.rating ? 'gold' : '#ccc' }">
+                            {{ star <= review.rating ? '★' : '☆' }}
+                        </span>
+                        </div>
+                        <p class="mb-0">{{ review.comment }}</p>
+                    </div>
+                    </div>
                 </div>
-                <div class="flex-grow-1">
-                  <div class="d-flex justify-content-between align-items-center mb-2">
-                    <h5 class="mb-0">{{ review.author }}</h5>
-                    <small class="text-muted">{{ formatDate(review.date) }}</small>
-                  </div>
-                  <div class="mb-2">
-                    <i v-for="star in 5" :key="star" 
-                       class="bi" 
-                       :class="[star <= review.rating ? 'bi-star-fill text-warning' : 'bi-star text-secondary']"></i>
-                  </div>
-                  <p class="mb-0">{{ review.comment }}</p>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
       </div>
     </div>
@@ -108,11 +113,12 @@
           console.error("Error loading reviews:", error)
         }
       },
+
       async submitReview() {
         this.isSubmitting = true
         try {
           const currentUser = JSON.parse(localStorage.getItem('currentUser'))
-          
+          this.newReview.adventureId = this.fullInfo.id
           const reviewData = {
             adventureId: this.fullInfo.id,
             author: currentUser?.name || 'Anonymous',
@@ -122,7 +128,7 @@
             authorImage: currentUser?.image || `https://ui-avatars.com/api/?name=${currentUser?.name || 'A'}&background=random`
           }
   
-          const response = await fetch('http://localhost:5000/reviews', {
+          await fetch('http://localhost:5000/reviews', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -130,10 +136,9 @@
             body: JSON.stringify(reviewData)
           })
   
-          if (response.ok) {
             this.newReview = { rating: 0, comment: '', adventureId: null }
-            await this.loadReviews() // Refresh the reviews list
-          }
+            await this.loadReviews() 
+
         } catch (error) {
           console.error("Error submitting review:", error)
         } finally {
@@ -143,7 +148,7 @@
     },
     async created() {
       await this.loadReviews()
-      this.newReview.adventureId = this.fullInfo.id
+      
     }
   }
 </script>

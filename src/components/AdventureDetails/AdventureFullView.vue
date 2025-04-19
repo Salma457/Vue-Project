@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row py-4 border border-3 bg-body-secondary">
 
-      <div class="col-lg-7 col-md-7">
+      <div class="col-lg-7 col-md-7 text-start">
         <!-- Summary  -->
         <section class="mb-2 p-3 border-bottom ">
           <h5 class="mb-4 pb-2 ">SUMMARY</h5>
@@ -47,7 +47,7 @@
           ></iframe>
         </div>
         <small class="text-muted mt-2 d-block">
-          Meeting point: {{ fullInfo.meetingPoint }}
+          Meeting point: {{ fullInfo.meetingPoint || 'not added' }}
         </small>
         </section>
       </div>
