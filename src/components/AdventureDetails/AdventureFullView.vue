@@ -21,34 +21,49 @@
           <div v-for="(day, index) in fullInfo.itinerary" :key="index">
             <p class="fs-6 fw-bold lh-base">{{ day.day }}</p>
             <p class="fs-6 lh-base">{{ day.description }}</p>
-            <p></p>
           </div>
         </section>
 
         <!-- Gallery -->
         <section class="mb-3 p-3 border-bottom" v-if="fullInfo.gallery">
           <h5 class="mb-4 pb-2">PHOTOS</h5>
-          <div class="row ">
+          <div class="row">
             <div class="col-2" v-for="(photo, index) in fullInfo.gallery" :key="index">
               <img :src="photo" class="img-fluid rounded" :alt="'Gallery image ' + (index + 1)" style="height: 100px; object-fit: cover;">
             </div>
           </div>
         </section>
 
+        <!-- Location -->
         <section class="mb-3 p-3 border-bottom">
-        <h5 class="mb-4 pb-2">LOCATION</h5>
-        <div class="ratio ratio-16x9">
-          <iframe 
-            src="https://www.openstreetmap.org/export/embed.html?bbox=18.3656,-34.0718,18.4824,-33.8781&layer=mapnik&marker=-33.9249,18.4241" 
-            class="border-0 w-100 h-100 rounded"
-            allowfullscreen
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </div>
-        <small class="text-muted mt-2 d-block">
-          Meeting point: {{ fullInfo.meetingPoint || 'not added' }}
-        </small>
+          <h5 class="mb-4 pb-2">LOCATION</h5>
+          <div class="ratio ratio-16x9">
+            <iframe 
+              src="https://www.openstreetmap.org/export/embed.html?bbox=18.3656,-34.0718,18.4824,-33.8781&layer=mapnik&marker=-33.9249,18.4241" 
+              class="border-0 w-100 h-100 rounded"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+          <small class="text-muted mt-2 d-block">
+            Meeting point: {{ fullInfo.meetingPoint || 'not added' }}
+          </small>
+        </section>
+
+        <!-- Reviews -->
+        <section class="mb-3 p-3 border-bottom" v-if="fullInfo.reviews && fullInfo.reviews.length">
+          <h5 class="mb-4 pb-2">REVIEWS</h5>
+          <div v-for="(review, index) in fullInfo.reviews" :key="index" class="mb-3">
+            <div class="d-flex align-items-center mb-1">
+              <strong class="me-2">{{ review.reviewer }}</strong>
+              <span class="text-warning">
+                <i class="fas fa-star" v-for="n in review.rating" :key="n"></i>
+              </span>
+            </div>
+            <p class="lh-base mb-1">{{ review.comment }}</p>
+            <small class="text-muted">{{ review.date }}</small>
+          </div>
         </section>
       </div>
 
