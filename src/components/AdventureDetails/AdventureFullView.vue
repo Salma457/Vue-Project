@@ -52,40 +52,35 @@
         </section>
 
         <!-- Reviews -->
-        <section class="mb-3 p-3 border-bottom" v-if="fullInfo.reviews && fullInfo.reviews.length">
-          <h5 class="mb-4 pb-2">REVIEWS</h5>
-          <div v-for="(review, index) in fullInfo.reviews" :key="index" class="mb-3">
-            <div class="d-flex align-items-center mb-1">
-              <strong class="me-2">{{ review.reviewer }}</strong>
-              <span class="text-warning">
-                <i class="fas fa-star" v-for="n in review.rating" :key="n"></i>
-              </span>
-            </div>
-            <p class="lh-base mb-1">{{ review.comment }}</p>
-            <small class="text-muted">{{ review.date }}</small>
-          </div>
+        <section class="mb-3 p-3 border-bottom">
+          <Reviews :fullInfo="fullInfo" />
         </section>
       </div>
 
-      <div class="col-lg-4 col-md-8">
-        <div class="booking-card">
-          <div class="price-info mb-3">
-            <h3 class="mb-2">${{ fullInfo.price }} <small class="text-muted">per person</small></h3>
-            <p class="text-muted mb-0">Group size: {{ fullInfo.groupSize }}</p>
-            <p class="text-muted">Duration: {{ fullInfo.duration }}</p>
-          </div>
+      <div class="col-lg-5 col-md-5">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <h4 class="card-title mb-4">Book This Adventure</h4>
+            
+            <div class="mb-4">
+              <h5 class="text-primary">${{ fullInfo.price }}</h5>
+              <p class="text-muted mb-0">per person</p>
+            </div>
 
-          <router-link 
-            :to="{ path: '/Book', query: { id: fullInfo.id }}"
-            class="btn w-100 text-white fw-bold book-btn"
-          >
-            Book Now!
-          </router-link>
+            <div class="mb-4">
+              <label class="form-label">Select Date</label>
+              <input type="date" class="form-control" v-model="selectedDate">
+            </div>
 
-          <div class="mt-3" v-if="!isLoggedIn">
-            <p class="text-muted text-center">
-              Please <router-link to="/login">login</router-link> to book this adventure
-            </p>
+            <div class="mb-4">
+              <label class="form-label">Number of Guests</label>
+              <input type="number" class="form-control" v-model="guestCount" min="1" :max="fullInfo.groupSize">
+              <small class="text-muted">Maximum group size: {{ fullInfo.groupSize }}</small>
+            </div>
+
+            <button class="btn btn-primary w-100" @click="bookAdventure" :disabled="!canBook">
+              Book Now
+            </button>
           </div>
         </div>
       </div>
@@ -94,47 +89,44 @@
 </template>
 
 <script>
+import Reviews from './Reviews.vue'
+
 export default {
-  props: ["fullInfo"],
+  name: 'AdventureFullView',
+  components: {
+    Reviews
+  },
+  props: {
+    fullInfo: {
+      type: Object,
+      required: true
+    }
+  },
+  data() {
+    return {
+      selectedDate: '',
+      guestCount: 1
+    }
+  },
   computed: {
-    isLoggedIn() {
-      return !!localStorage.getItem('currentUser')
+    canBook() {
+      return this.selectedDate && this.guestCount > 0 && this.guestCount <= this.fullInfo.groupSize
+    }
+  },
+  methods: {
+    bookAdventure() {
+      // Implement booking logic here
+      console.log('Booking adventure:', {
+        date: this.selectedDate,
+        guests: this.guestCount
+      })
     }
   }
 }
 </script>
 
 <style scoped>
-.booking-card {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.book-btn {
-  background-color: #ff5a5f;
-  transition: background-color 0.3s;
-}
-
-.book-btn:hover {
-  background-color: #ff4146;
-}
-
-.object-fit-cover {
-  object-fit: cover;
-}
-
-.nav-tabs .nav-link {
-  font-weight: 500;
-}
-
-.rounded-circle {
-  width: 2.5rem;
-  height: 2.5rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
+.border-bottom {
+  border-color: rgba(0,0,0,0.1) !important;
 }
 </style>

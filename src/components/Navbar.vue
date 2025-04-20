@@ -9,6 +9,7 @@
 
     <nav class="nav-links">
       <router-link to="/adventures" class="nav-link">Explore</router-link>
+      <router-link to="/wishlist" class="nav-link">Wishlist</router-link>
 
       <template v-if="!isLoggedIn">
         <router-link to="/register" class="nav-link">Register</router-link>
@@ -16,192 +17,28 @@
       </template>
 
       <template v-else>
-        <div class="dropdown">
-          <button class="dropdown-toggle" @click="toggleDropdown">
-            <span class="user-info">{{ loggedInUsername }}</span>
-            <i class="bi bi-chevron-down"></i>
-          </button>
-          <div class="dropdown-menu" v-show="showDropdown">
-            <router-link to="/profile/info" class="dropdown-item">
-              <i class="bi bi-person"></i> Profile
-            </router-link>
-            <router-link to="/profile/my-adventures" class="dropdown-item">
-              <i class="bi bi-compass"></i> My Adventures
-            </router-link>
-            <router-link to="/profile/booked" class="dropdown-item">
-              <i class="bi bi-calendar-check"></i> Booked Adventures
-            </router-link>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item" @click.prevent="logout">
-              <i class="bi bi-box-arrow-right"></i> Logout
-            </a>
-          </div>
-        </div>
-<!-- 
-
-
-  <template>
-    <header class="navbar">
-      <div class="logo-container">
-        <h1 class="logo">
-          <router-link to="/" class="logo-link">EMBARK.ORG</router-link>
-        </h1>
-        <p class="tagline">FEATURED TURKS</p>
-      </div>
-      
-      <nav class="nav-links">
-        <router-link to="/adventures" class="nav-link">Explore</router-link>
-        <router-link to="/register" class="nav-link">Register</router-link>
-        <router-link to="/login" class="nav-link">Login</router-link>
-        <button class="host-button" @click="$router.push('/host')">HOST AN ADVENTURE</button>
-      </nav>
-
-
-      
-    </header>
-  </template>
-  
-  <script>
-  export default {
-    name: 'Navbar'
-  }
-  </script>
-  
-  <style scoped>
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    background-color: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    position: relative;
-    z-index: 100;
-  }
-  
-  .logo-container {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .logo {
-    font-size: 1.5rem;
-    margin: 0;
-  }
-  
-  .logo-link {
-    font-weight: bold;
-    color: #333;
-    text-decoration: none;
-  }
-  
-  .tagline {
-    font-size: 0.8rem;
-    color: #666;
-    margin: 3px 0 0;
-  }
-  
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-  }
-  
-  .nav-link {
-    text-decoration: none;
-    color: #333;
-    font-size: 0.95rem;
-    font-weight: 500;
-    transition: color 0.3s;
-  }
-  
-  .router-link-exact-active {
-    color: #ff5a5f;
-    font-weight: bold;
-  }
-  
-  .host-button {
-    padding: 8px 16px;
-    background-color: #ff5a5f;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-  
-  .host-button:hover {
-    background-color: #e04a50;
-    transform: translateY(-2px);
-  }
-  
-  @media (max-width: 768px) {
-    .navbar {
-      flex-direction: column;
-      padding: 15px;
-    }
-    
-    .nav-links {
-      margin-top: 15px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-  }
-  </style> -->
-
-
-  <template>
-    <header class="navbar">
-      <div class="logo-container">
-        <h1 class="logo">
-          <router-link to="/" class="logo-link">EMBARK.ORG</router-link>
-        </h1>
-        <p class="tagline">FEATURED TURKS</p>
-      </div>
-  
-      <nav class="nav-links">
-        <router-link to="/adventures" class="nav-link">Explore</router-link>
-        <router-link to="/wishlist" class="nav-link">
-          <!-- <span class="wishlist-icon">❤️</span> -->
-      Wishlist 
-    </router-link>
-  
-        <template v-if="!isLoggedIn">
-          <router-link to="/register" class="nav-link">Register</router-link>
-          <router-link to="/login" class="nav-link">Login</router-link>
-        </template>
-  
-        <template v-else>
-          <span class="user-info">Welcome, {{ loggedInUsername }}</span>
-          <button class="logout-button" @click="logout">Logout</button>
-        </template>
-  
-        <button class="host-button" @click="$router.push('/host')">HOST AN ADVENTURE</button>
+        <router-link to="/profile/info" class="nav-link">
+          <i class="bi bi-person me-1"></i> Profile
+        </router-link>
+        <router-link to="/profile/my-adventures" class="nav-link">
+          <i class="bi bi-compass me-1"></i> My Adventures
+        </router-link>
+        <router-link to="/profile/booked" class="nav-link">
+          <i class="bi bi-calendar-check me-1"></i> Booked
+        </router-link>
+        <a href="#" class="nav-link" @click.prevent="logout">
+          <i class="bi bi-box-arrow-right me-1"></i> Logout
+        </a>
       </template>
+
+      <button class="host-button" @click="$router.push('/host')">HOST AN ADVENTURE</button>
     </nav>
   </header>
 </template>
 
-
-
-
-
-
-
-
-
-
-
-
 <script>
 export default {
   name: 'Navbar',
-  data() {
-    return {
-      showDropdown: false
-    }
-  },
   computed: {
     isLoggedIn() {
       return !!localStorage.getItem('currentUser');
@@ -212,51 +49,13 @@ export default {
     }
   },
   methods: {
-    toggleDropdown(e) {
-      e.stopPropagation(); // Prevent event bubbling
-      this.showDropdown = !this.showDropdown;
-    },
     logout() {
       localStorage.removeItem('currentUser');
-      this.showDropdown = false;
       this.$router.push('/login');
-    },
-    closeDropdown() {
-      this.showDropdown = false;
     }
-  },
-
-  mounted() {
-    document.addEventListener('click', () => {
-      console.log('Document click detected')
-      this.showDropdown = false
-    })
-  },
-
-    methods: {
-    toggleDropdown(e) {
-      console.log('Dropdown clicked', e)
-      e.stopPropagation()
-      this.showDropdown = !this.showDropdown
-    },
-    testClick() {
-      console.log('Regular button clicked')
-    }
-  },
-
-  mounted() {
-    // Close dropdown when clicking outside
-    document.addEventListener('click', this.closeDropdown);
-  },
-  beforeUnmount() {
-    // Clean up event listener
-    document.removeEventListener('click', this.closeDropdown);
   }
 };
 </script>
-
-
-
 
 <style scoped>
 .navbar {
@@ -304,6 +103,8 @@ export default {
   font-size: 0.95rem;
   font-weight: 500;
   transition: color 0.3s;
+  display: flex;
+  align-items: center;
 }
 
 .router-link-exact-active {
@@ -327,59 +128,6 @@ export default {
   transform: translateY(-2px);
 }
 
-/* Dropdown styles */
-.dropdown {
-  position: relative;
-}
-
-.dropdown-toggle {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 8px 12px;
-  background: none;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.dropdown-toggle:hover {
-  background-color: #f8f9fa;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  margin-top: 8px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  min-width: 200px;
-  z-index: 1000;
-}
-
-.dropdown-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
-  color: #333;
-  text-decoration: none;
-  transition: background-color 0.3s;
-}
-
-.dropdown-item:hover {
-  background-color: #f8f9fa;
-}
-
-.dropdown-divider {
-  height: 1px;
-  background-color: #eee;
-  margin: 8px 0;
-}
-
 .bi {
   font-size: 1.1rem;
 }
@@ -389,22 +137,11 @@ export default {
     flex-direction: column;
     padding: 15px;
   }
-  
+
   .nav-links {
     margin-top: 15px;
     flex-wrap: wrap;
     justify-content: center;
   }
-
-  .dropdown-menu {
-    position: fixed;
-    top: auto;
-    right: 50%;
-    transform: translateX(50%);
-    width: 90%;
-    max-width: 300px;
-  }
 }
 </style>
-
-
