@@ -43,6 +43,17 @@
   </header>
 </template>
 
+
+
+
+
+
+
+
+
+
+
+
 <script>
 export default {
   name: 'Navbar',
@@ -61,25 +72,51 @@ export default {
     }
   },
   methods: {
-    toggleDropdown() {
+    toggleDropdown(e) {
+      e.stopPropagation(); // Prevent event bubbling
       this.showDropdown = !this.showDropdown;
     },
     logout() {
       localStorage.removeItem('currentUser');
       this.showDropdown = false;
       this.$router.push('/login');
+    },
+    closeDropdown() {
+      this.showDropdown = false;
     }
   },
+
+  mounted() {
+    document.addEventListener('click', () => {
+      console.log('Document click detected')
+      this.showDropdown = false
+    })
+  },
+
+    methods: {
+    toggleDropdown(e) {
+      console.log('Dropdown clicked', e)
+      e.stopPropagation()
+      this.showDropdown = !this.showDropdown
+    },
+    testClick() {
+      console.log('Regular button clicked')
+    }
+  },
+
   mounted() {
     // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.dropdown')) {
-        this.showDropdown = false;
-      }
-    });
+    document.addEventListener('click', this.closeDropdown);
+  },
+  beforeUnmount() {
+    // Clean up event listener
+    document.removeEventListener('click', this.closeDropdown);
   }
 };
 </script>
+
+
+
 
 <style scoped>
 .navbar {
@@ -229,3 +266,5 @@ export default {
   }
 }
 </style>
+
+

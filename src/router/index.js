@@ -115,10 +115,23 @@ const routes = [
     component: UsersList
   },
   {
+    path: '/host/add',
+    name: 'AddAdventure',
+    component: () => import('@/views/AddAdventure.vue')
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: '404',
-    component: error404page
+    component:  error404page
+  }
+  
+  ,
+
+  {
+    path: '/dropdown-debug',
+    component: () => import('@/views/DropdownDebug.vue')
   },
+
   {
     path: '/adventures/:id',
     name: 'AdventureDetails',
