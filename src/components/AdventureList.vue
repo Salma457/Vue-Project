@@ -32,6 +32,9 @@
         </div>
       </div>
   
+      <!-- عرض المغامرات -->
+   
+
     <div class="adventures-grid">
     <div v-for="adventure in filteredAdventures" :key="adventure.id">
       <AdventureCard  

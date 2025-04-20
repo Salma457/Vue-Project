@@ -53,10 +53,26 @@
       </div>
 
       <div class="col-lg-4 col-md-8">
-        <router-link :to="bookNowRoute">
-          <button class="btn w-100 text-white fw-bold" style="background-color: #ff5a5f;" >Book Now!</button>
-        </router-link>
+        <div class="booking-card">
+          <div class="price-info mb-3">
+            <h3 class="mb-2">${{ fullInfo.price }} <small class="text-muted">per person</small></h3>
+            <p class="text-muted mb-0">Group size: {{ fullInfo.groupSize }}</p>
+            <p class="text-muted">Duration: {{ fullInfo.duration }}</p>
+          </div>
 
+          <router-link 
+            :to="{ path: '/Book', query: { id: fullInfo.id }}"
+            class="btn w-100 text-white fw-bold book-btn"
+          >
+            Book Now!
+          </router-link>
+
+          <div class="mt-3" v-if="!isLoggedIn">
+            <p class="text-muted text-center">
+              Please <router-link to="/login">login</router-link> to book this adventure
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -64,25 +80,32 @@
 
 <script>
 export default {
-
-  data() {
-    return {
-      bookPath: ''
-    }
-  },
-
+  props: ["fullInfo"],
   computed: {
-    bookNowRoute() {
-      return localStorage.getItem('currentUser') ? '/Book' : '/';
-    },
-  },
-  props:["fullInfo"],
-  components:{}
+    isLoggedIn() {
+      return !!localStorage.getItem('currentUser')
+    }
+  }
 }
 </script>
 
 <style scoped>
-/* Custom tweaks that Bootstrap doesn't handle */
+.booking-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.book-btn {
+  background-color: #ff5a5f;
+  transition: background-color 0.3s;
+}
+
+.book-btn:hover {
+  background-color: #ff4146;
+}
+
 .object-fit-cover {
   object-fit: cover;
 }
