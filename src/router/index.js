@@ -28,6 +28,11 @@ const routes = [
     component: Home
   },
   {
+    path: '/wishlist',
+    name: 'Wishlist',
+    component: () => import('@/views/Wishlist.vue')
+  },
+  {
     path: '/adventures',
     name: 'Adventures',
     component: Adventures,
