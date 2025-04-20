@@ -16,7 +16,10 @@ import RegisterPage from '@/views/RegisterPage.vue'
 import UsersList from '@/components/UsersList.vue'
 import error404page from '@/views/error404page.vue'
 import AddAdventure from '../views/AddAdventure.vue'
-
+import Profile from '@/views/Profile.vue'
+import PersonalInfo from '@/components/profile/PersonalInfo.vue'
+import MyAdventures from '@/components/profile/MyAdventures.vue'
+import BookedAdventures from '@/components/profile/BookedAdventures.vue'
 
 const routes = [
   {
@@ -29,6 +32,29 @@ const routes = [
     name: 'Adventures',
     component: Adventures,
     props: route => ({ country: route.query.country || '' })
+  },
+  {
+    path: '/profile',
+    component: Profile,
+    children: [
+      {
+        path: 'info',
+        component: PersonalInfo
+      },
+      {
+        path: 'my-adventures',
+        component: MyAdventures
+      },
+      {
+        path: 'booked',
+        component: BookedAdventures
+      },
+      {
+        path: '',
+        redirect: '/profile/info'
+      }
+    ],
+    meta: { requiresAuth: true }
   },
   {
     path: '/overview',
@@ -69,8 +95,7 @@ const routes = [
     path: '/submit',
     name: 'HostSubmit',
     component: HostSubmit
-  }
-  ,
+  },
   {
     path: '/Login',
     name: 'login',
@@ -81,7 +106,6 @@ const routes = [
     name: 'Register',
     component: RegisterPage
   },
-  
   {
     path: '/users',
     name: 'users',
@@ -95,25 +119,35 @@ const routes = [
   {
     path: '/:pathMatch(.*)*',
     name: '404',
-    component:  error404page
-  }
-  
-  ,
+    component: error404page
+  },
   {
     path: '/adventures/:id',
     name: 'AdventureDetails',
     component: () => import('../views/AdventureDetails.vue'),
-    props: true // This allows route params to be passed as props
+    props: true
   },
   {
-    path:'/Book',
-    component:Book
+    path: '/Book',
+    component: Book
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(),
   routes
+})
+
+// Add navigation guard for protected routes
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth) {
+    const currentUser = localStorage.getItem('currentUser')
+    if (!currentUser) {
+      next('/login')
+      return
+    }
+  }
+  next()
 })
 
 export default router
