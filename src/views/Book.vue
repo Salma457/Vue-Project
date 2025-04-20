@@ -1,222 +1,201 @@
 <template>
   <div>
-    <Navbar/>
-    <div class="container py-4" v-if="adventureStore.adventure.length > 0 ">
-      <div class="row g-4">
-        <!-- Booking Form Section -->
-        <div class="col-lg-8">
-          <div class="card shadow-sm">
+    <Navbar />
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="card">
             <div class="card-body">
-              <h5 class="my-3">{{ adventureStore.adventure[0].title }}</h5>
-              <h4 class="card-title mb-4">Book Your Adventure</h4>
-              <div class="row g-3">
-                <!-- Date Picker -->
-                <div class="col-md-4">
-                  <label for="advDate" class="form-label fw-bold">Date</label>
-                  <input 
-                    type="date" 
-                    class="form-control form-control-lg" 
-                    v-model="adventureDate" 
-                    id="advDate"
-                  >
+              <h2 class="card-title mb-4">Book Adventure</h2>
+              
+              <div v-if="loading" class="text-center">
+                <div class="spinner-border text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
                 </div>
-                
-                <!-- Time Selector -->
-                <div class="col-md-4">
-                  <label class="form-label fw-bold">Time</label>
-                  <select 
-                    class="form-select form-select-lg" 
-                    v-model="adventureTime"
-                  >
-                    <option value="" disabled selected>Select time</option>
-                    <option 
-                      v-for="time in timeOptions" 
-                      :key="time" 
-                      :value="time"
+              </div>
+
+              <div v-else-if="adventure">
+                <div class="mb-4">
+                  <h4>{{ adventure.title }}</h4>
+                  <p class="text-muted">{{ adventure.subtitle }}</p>
+                </div>
+
+                <form @submit.prevent="submitBooking">
+                  <div class="mb-3">
+                    <label class="form-label">Select Date</label>
+                    <input 
+                      type="date" 
+                      class="form-control" 
+                      v-model="bookingDate"
+                      :min="minDate"
+                      required
                     >
-                      {{ time }}
-                    </option>
-                  </select>
-                </div>
-                
-                <!-- Group Size -->
-                <div class="col-md-4">
-                  <label class="form-label fw-bold">Group Size</label>
-                  <select 
-                    class="form-select form-select-lg" 
-                    v-model="groupsize"
-                  >
-                    <option value="0" disabled selected>Select group size</option>
-                    <option 
-                      v-for="size in groupSizeRange" 
-                      :key="size" 
-                      :value="size"
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">Number of Participants</label>
+                    <input 
+                      type="number" 
+                      class="form-control" 
+                      v-model="participants"
+                      :min="1"
+                      :max="adventure.maxGroupSize || 10"
+                      required
                     >
-                      {{ size }} {{ size === 1 ? 'person' : 'people' }}
-                    </option>
-                  </select>
-                </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">Special Requests</label>
+                    <textarea 
+                      class="form-control" 
+                      v-model="specialRequests"
+                      rows="3"
+                    ></textarea>
+                  </div>
+
+                  <button 
+                    type="submit" 
+                    class="btn btn-primary"
+                    :disabled="!isLoggedIn"
+                  >
+                    Confirm Booking
+                  </button>
+
+                  <div v-if="!isLoggedIn" class="alert alert-warning mt-3">
+                    Please <router-link to="/login">login</router-link> to book this adventure.
+                  </div>
+                </form>
+              </div>
+
+              <div v-else class="alert alert-danger">
+                Adventure not found. Please try again.
               </div>
             </div>
           </div>
         </div>
-      </div>
-      
-      <div class="row">
-        <!-- Price Summary Section -->
-        <div class="col-lg-4 mt-5">
-          <div class="card shadow-sm">
+
+        <div class="col-md-4">
+          <div class="card" v-if="adventure">
             <div class="card-body">
-              <h4 class="card-title mb-4">Price Summary</h4>
-              
+              <h5 class="card-title">Booking Summary</h5>
+              <div class="d-flex justify-content-between mb-2">
+                <span>Adventure:</span>
+                <span>{{ adventure.title }}</span>
+              </div>
               <div class="d-flex justify-content-between mb-2">
                 <span>Price per person:</span>
-                <span class="fw-bold">${{ adventureStore.adventure[0].price }}</span>
+                <span>${{ adventure.price }}</span>
               </div>
-              
-              <div class="d-flex justify-content-between mb-3" v-if="groupsize > 0">
-                <span>
-                  {{ groupsize }} {{ groupsize === 1 ? 'person' : 'people' }}:
-                </span>
-                <span class="fw-bold">${{ totalPrice }}</span>
+              <div class="d-flex justify-content-between mb-2">
+                <span>Participants:</span>
+                <span>{{ participants }}</span>
               </div>
-              
-              <div class="alert alert-info" v-else>
-                Please select group size
+              <hr>
+              <div class="d-flex justify-content-between fw-bold">
+                <span>Total:</span>
+                <span>${{ totalPrice }}</span>
               </div>
-              
-              <button 
-                class="btn btn-primary w-100 py-2" 
-                :disabled="!isFormComplete"
-                @click="addBooking"
-              >
-                Book Now
-              </button>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="text-center d-flex align-items-center justify-content-center flex-column" style="height: 100vh;" v-else>
-      <h2 class=" mb-5" >Please select an adventure first!</h2>
-      <router-link to="/adventures">
-        <button class="btn btn-primary">Browse Adventures</button>
-      </router-link>
     </div>
   </div>
 </template>
 
 <script>
-import { adventureStore } from '@/stores/adventureStore';
-import Navbar from '@/components/Navbar.vue';
+import Navbar from '@/components/Navbar.vue'
+import { adventureStore } from '@/stores/adventureStore'
+
 export default {
+  name: 'Book',
+  components: {
+    Navbar
+  },
   data() {
     return {
-      adventureStore,
-      adventureDate: '',
-      adventureTime: '',
-      groupsize: 0,
-      timeOptions: [
-        '6:00 AM', '6:30 AM',
-        '7:00 AM', '7:30 AM',
-        '8:00 AM', '8:30 AM',
-        '9:00 AM', '9:30 AM',
-        '10:00 AM', '10:30 AM',
-        '11:00 AM', '11:30 AM',
-        '12:00 PM', '12:30 PM',
-        '1:00 PM', '1:30 PM',
-        '2:00 PM', '2:30 PM',
-        '3:00 PM', '3:30 PM',
-        '4:00 PM', '4:30 PM',
-        '5:00 PM', '5:30 PM',
-        '6:00 PM', '6:30 PM'
-      ],
-      Bookings:[]
-    };
+      adventure: null,
+      bookingDate: '',
+      participants: 1,
+      specialRequests: '',
+      loading: true
+    }
   },
-  components:{Navbar}
-  ,
   computed: {
-
-    groupSizeRange() {
-      const groupSizeString = this.adventureStore.adventure[0]?.groupSize || "0 people";
-      const numbers = groupSizeString.match(/\d+/g);
-      if (!numbers || numbers.length < 2) return [];
-      const start = parseInt(numbers[0]);
-      const end = parseInt(numbers[1]);
-      return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+    isLoggedIn() {
+      return !!localStorage.getItem('currentUser')
     },
-
+    minDate() {
+      const today = new Date()
+      return today.toISOString().split('T')[0]
+    },
     totalPrice() {
-      return this.groupsize * (this.adventureStore.adventure[0]?.price || 0);
-    },
-
-    isFormComplete() {
-      return this.adventureDate && this.adventureTime && this.groupsize > 0;
+      if (!this.adventure) return 0
+      return (this.adventure.price || 0) * this.participants
     }
   },
+  async mounted() {
+    try {
+      // Get the adventure ID from the query parameters
+      const adventureId = this.$route.query.id
+      if (!adventureId) {
+        throw new Error('No adventure ID provided')
+      }
 
-  methods:{
-
-    async addBooking(){
-
-      let newId = this.Bookings?.[this.Bookings.length - 1]?.id + 1 ?? 1;
-      let user = JSON.parse(localStorage.getItem('currentUser'));
-
-      let bookingData ={
-        id:newId,
-        adventureId: adventureStore.adventure[0].id,
-        userId:user.email,
-        date: this.adventureDate,
-        time: this.adventureTime,
-        participants: this.groupsize,
-        status:'confirmed',
-        totalPrice: this.totalPrice,
-      } 
-      // console.log(bookingData)
-      await this.pushBooking(bookingData);
-      // console.log(this.Bookings);
-
-       // Redirect after successful booking
-      this.$router.push('/');
-    
-    },
-
-    async pushBooking(bookingDt){
-
-      await fetch('http://localhost:5000/bookings',{
-        method:"POST",
-        header:{
-          'Content-Type':'application/json'
-        },
-        body:JSON.stringify(bookingDt)
-      })
-      this.Bookings.push(bookingDt);
+      // Fetch the adventure details
+      this.adventure = await adventureStore.getAdventure(adventureId)
+    } catch (error) {
+      console.error('Error loading adventure:', error)
+    } finally {
+      this.loading = false
     }
-
-
   },
+  methods: {
+    async submitBooking() {
+      if (!this.isLoggedIn) {
+        this.$router.push('/login')
+        return
+      }
 
-  async created(){
-    let fetchedBookings = await fetch(`http://localhost:5000/bookings`);
-    this.Bookings = await fetchedBookings.json();
+      try {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'))
+        const bookingData = {
+          userId: currentUser.id,
+          adventureId: this.adventure.id,
+          adventureDate: this.bookingDate,
+          participants: this.participants,
+          specialRequests: this.specialRequests,
+          totalPrice: this.totalPrice,
+          status: 'pending',
+          bookingDate: new Date().toISOString()
+        }
+
+        const response = await fetch('http://localhost:5000/bookings', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(bookingData)
+        })
+
+        if (!response.ok) {
+          throw new Error('Failed to create booking')
+        }
+
+        // Redirect to booked adventures page
+        this.$router.push('/profile/booked')
+      } catch (error) {
+        console.error('Error creating booking:', error)
+        alert('Failed to create booking. Please try again.')
+      }
+    }
   }
-};
+}
 </script>
 
 <style scoped>
 .card {
-  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   border: none;
-}
-
-.form-control, .form-select {
-  border-radius: 8px;
-  border: 1px solid #dee2e6;
-}
-
-.btn-primary {
-  border-radius: 8px;
-  font-weight: 500;
 }
 </style>

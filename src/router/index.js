@@ -36,25 +36,28 @@ const routes = [
   {
     path: '/profile',
     component: Profile,
+    meta: { requiresAuth: true },
     children: [
       {
+        path: '',
+        redirect: '/profile/info'
+      },
+      {
         path: 'info',
+        name: 'PersonalInfo',
         component: PersonalInfo
       },
       {
         path: 'my-adventures',
+        name: 'MyAdventures',
         component: MyAdventures
       },
       {
         path: 'booked',
+        name: 'BookedAdventures',
         component: BookedAdventures
-      },
-      {
-        path: '',
-        redirect: '/profile/info'
       }
-    ],
-    meta: { requiresAuth: true }
+    ]
   },
   {
     path: '/overview',
@@ -110,11 +113,6 @@ const routes = [
     path: '/users',
     name: 'users',
     component: UsersList
-  },
-  {
-    path: '/host/add',
-    name: 'AddAdventure',
-    component: () => import('@/views/AddAdventure.vue')
   },
   {
     path: '/:pathMatch(.*)*',
